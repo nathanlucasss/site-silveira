@@ -3,19 +3,33 @@ import Layout from '../../layouts/Layout.astro';
 import { BLOG_POSTS } from '../../data/blog';
 
 const posts = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1));
+const siteUrl = 'https://silveiraadv.com.br';
+
+const AUTHOR_PROFILE_URL_BY_NAME: Record<string, string> = {
+	'Dr. Richard Silveira': `${siteUrl}/equipe/richard-silveira`,
+	'Dr. Raphael Marques': `${siteUrl}/equipe/raphael-marques`,
+	'Dr. Diogo Ferreira': `${siteUrl}/equipe/diogo-ferreira`,
+};
+
+const toSchemaAuthor = (authorName: string) => ({
+	'@type': 'Person',
+	name: authorName.replace(/^Dr\.?\s+/i, '').trim(),
+	url: AUTHOR_PROFILE_URL_BY_NAME[authorName] ?? `${siteUrl}/equipe`,
+});
 
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Blog',
 	name: 'Blog Silveira Advocacia',
-	url: 'https://silveiraadv.com.br/blog',
+	url: `${siteUrl}/blog`,
 	description: 'Artigos jurídicos da Silveira Advocacia sobre temas práticos do dia a dia.',
 	blogPost: posts.map((post) => ({
 		'@type': 'BlogPosting',
 		headline: post.title,
-		datePublished: post.date,
-		author: { '@type': 'Organization', name: post.author },
-		url: `https://silveiraadv.com.br/blog/${post.slug}`,
+		datePublished: `${post.date}T12:00:00-03:00`,
+		dateModified: `${post.date}T12:00:00-03:00`,
+		author: toSchemaAuthor(post.author),
+		url: `${siteUrl}/blog/${post.slug}`,
 	})),
 };
 

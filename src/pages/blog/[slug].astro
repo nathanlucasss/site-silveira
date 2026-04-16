@@ -10,6 +10,18 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const siteUrl = 'https://silveiraadv.com.br';
+
+const AUTHOR_PROFILE_URL_BY_NAME: Record<string, string> = {
+	'Dr. Richard Silveira': `${siteUrl}/equipe/richard-silveira`,
+	'Dr. Raphael Marques': `${siteUrl}/equipe/raphael-marques`,
+	'Dr. Diogo Ferreira': `${siteUrl}/equipe/diogo-ferreira`,
+};
+
+const authorUrl = AUTHOR_PROFILE_URL_BY_NAME[post.author] ?? `${siteUrl}/equipe`;
+const authorPath = authorUrl.replace(siteUrl, '') || '/equipe';
+const schemaAuthorName = post.author.replace(/^Dr\.?\s+/i, '').trim();
+const publishedAt = `${post.date}T12:00:00-03:00`;
 
 const articleStructuredData = [
 	{
@@ -17,28 +29,37 @@ const articleStructuredData = [
 		'@type': 'BlogPosting',
 		headline: post.title,
 		description: post.description,
-		datePublished: post.date,
+		datePublished: publishedAt,
+		dateModified: publishedAt,
+		image: [`${siteUrl}/og-image.jpg`],
 		author: {
-			'@type': 'Organization',
-			name: post.author,
+			'@type': 'Person',
+			name: schemaAuthorName,
+			url: authorUrl,
 		},
 		publisher: {
 			'@type': 'Organization',
 			name: 'Silveira Advocacia',
+			url: siteUrl,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${siteUrl}/og-image.jpg`,
+			},
 		},
-		mainEntityOfPage: `https://silveiraadv.com.br/blog/${post.slug}`,
+		mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+		articleSection: post.category,
 	},
 	{
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
 		itemListElement: [
-			{ '@type': 'ListItem', position: 1, name: 'Início', item: 'https://silveiraadv.com.br/' },
-			{ '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://silveiraadv.com.br/blog' },
+			{ '@type': 'ListItem', position: 1, name: 'Início', item: `${siteUrl}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
 			{
 				'@type': 'ListItem',
 				position: 3,
 				name: post.title,
-				item: `https://silveiraadv.com.br/blog/${post.slug}`,
+				item: `${siteUrl}/blog/${post.slug}`,
 			},
 		],
 	},
@@ -57,6 +78,7 @@ function formatDate(value: string) {
 	title={post.seoTitle}
 	description={post.description}
 	canonicalPath={`/blog/${post.slug}`}
+	ogType="article"
 	structuredData={articleStructuredData}
 >
 	<section class="page-hero" aria-labelledby="post-title">
@@ -73,6 +95,9 @@ function formatDate(value: string) {
 			<p>{post.description}</p>
 			<p style="margin-top: 14px; font-size: 14px; color: rgba(255, 255, 255, 0.8);">
 				Publicado em {formatDate(post.date)} · {post.readTime} de leitura
+			</p>
+			<p style="margin-top: 8px; font-size: 14px; color: rgba(255, 255, 255, 0.85);">
+				Por <a href={authorPath} style="color: var(--color-gold-light); text-decoration: underline;">{post.author}</a>
 			</p>
 		</div>
 	</section>
