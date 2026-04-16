@@ -1,0 +1,26 @@
+---
+import TeamProfilePage from '../../components/TeamProfilePage.astro';
+
+const profile = {
+	slug: 'raphael-marques',
+	name: 'Dr. Raphael Marques',
+	oab: 'OAB/MG 231.188',
+	role: 'Advogado Civilista',
+	title: 'Dr. Raphael em Campo Belo MG | Silveira Advocacia',
+	description:
+		'Dr. Raphael Marques, advogado cível em Campo Belo MG, OAB/MG 231.188, com atuação em direito bancário, imobiliário e sucessões, com estratégia personalizada.',
+	image: '/images/AdvogadoRaphael.jpeg',
+	imageAlt: 'Dr. Raphael Marques - Advogado Civilista',
+	kicker: 'ESPECIALISTA EM DIREITO CÍVEL',
+	intro:
+		'O Dr. Raphael Marques atua com foco em direito cível e relações de consumo, oferecendo abordagem estratégica para conflitos patrimoniais e contratuais.',
+	paragraphs: [
+		'Na atuação diária, o Dr. Raphael conduz demandas cíveis com atenção à prova documental e à construção de teses consistentes, buscando soluções eficazes tanto na via extrajudicial quanto no contencioso. Sua experiência inclui responsabilidade civil, contratos, cobranças e discussões patrimoniais complexas.',
+		'Também tem atuação relevante em direito bancário e imobiliário, com revisão de contratos, análise de cláusulas abusivas e suporte jurídico em negociações que exigem precisão técnica. Em temas de sucessões, contribui para inventários e organização patrimonial com foco em segurança e celeridade.',
+		'Com postura objetiva e comunicação clara, o Dr. Raphael orienta clientes em cada etapa do caso, explicando riscos e alternativas de forma acessível. O atendimento presencial e online facilita acompanhamento contínuo e tomada de decisão com base jurídica sólida.',
+	],
+	specialties: ['Direito Cível', 'Direito Bancário', 'Direito Imobiliário', 'Sucessões'],
+};
+---
+
+<TeamProfilePage profile={profile} />

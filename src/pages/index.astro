@@ -1,2531 +1,710 @@
-<!doctype html>
-<html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+---
+import Layout from '../layouts/Layout.astro';
+import { LOCAL_BUSINESS_LEGAL_SERVICE_SCHEMA } from '../data/structuredData';
 
-		<title>Advogado Criminal em Campo Belo MG | Silveira Advocacia</title>
-		<meta
-			name="description"
-			content="Silveira Advocacia em Campo Belo/MG: 500+ defesas criminais e 16+ anos de atuação em direito criminal, cível, bancário e família. Fale agora no WhatsApp."
-		/>
-		<meta
-			name="keywords"
-			content="advogado criminal campo belo, advogado cível MG, defesa criminal campo belo, advogado flagrante MG, inventário campo belo, divórcio campo belo, advogado bancário MG, usucapião MG, Silveira Advocacia"
-		/>
-		<meta name="robots" content="index, follow" />
-		<link rel="canonical" href="https://silveiraadv.com/" />
-
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Advogado Criminal em Campo Belo MG | Silveira Advocacia" />
-		<meta
-			property="og:description"
-			content="Mais de 500 defesas criminais. 16 anos de atuação. Atendimento imediato pelo WhatsApp. Campo Belo/MG e todo o Brasil online."
-		/>
-		<meta property="og:url" content="https://silveiraadv.com/" />
-		<meta property="og:site_name" content="Silveira Advocacia" />
-		<meta property="og:locale" content="pt_BR" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Advogado Criminal em Campo Belo MG | Silveira Advocacia" />
-		<meta
-			name="twitter:description"
-			content="Mais de 500 defesas criminais. 16 anos de atuação. Atendimento imediato."
-		/>
-
-		<script type="application/ld+json" is:inline>
+const homeStructuredData = [
+	LOCAL_BUSINESS_LEGAL_SERVICE_SCHEMA,
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
 			{
-				"@context": "https://schema.org",
-				"@graph": [
-					{
-						"@type": "LegalService",
-						"@id": "https://silveiraadv.com/#legalservice",
-						"name": "Silveira Advocacia Advogados Associados",
-						"description": "Escritório de advocacia em Campo Belo/MG com mais de 16 anos de atuação. Especializados em direito criminal, cível, bancário, família e sucessões.",
-						"url": "https://silveiraadv.com",
-						"telephone": "+55-35-99848-1800",
-						"email": "contato@silveiraadv.com",
-						"foundingDate": "2008",
-						"address": {
-							"@type": "PostalAddress",
-							"streetAddress": "Rua Dom Pedro I, nº 139",
-							"addressLocality": "Campo Belo",
-							"addressRegion": "MG",
-							"postalCode": "37270-000",
-							"addressCountry": "BR"
-						},
-						"geo": {
-							"@type": "GeoCoordinates",
-							"latitude": "-20.8956",
-							"longitude": "-45.2736"
-						},
-						"openingHours": "Mo-Fr 08:00-18:00",
-						"areaServed": ["Campo Belo", "Lavras", "Varginha", "Formiga", "Minas Gerais", "Brasil"],
-						"priceRange": "$$",
-						"hasOfferCatalog": {
-							"@type": "OfferCatalog",
-							"name": "Áreas de Atuação",
-							"itemListElement": [
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direito Criminal" } },
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direito Cível" } },
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direito de Família" } },
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direito Bancário" } },
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direito Imobiliário" } },
-								{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inventário e Sucessões" } }
-							]
-						},
-						"sameAs": ["https://www.instagram.com/silveira.advocaciacb/"]
-					},
-					{
-						"@type": "FAQPage",
-						"mainEntity": [
-							{
-								"@type": "Question",
-								"name": "O que fazer se fui preso em flagrante?",
-								"acceptedAnswer": {
-									"@type": "Answer",
-									"text": "Se você ou um familiar foi preso em flagrante, o primeiro passo é contatar imediatamente um advogado criminalista. O advogado poderá acompanhar a lavratura do auto de prisão, verificar a legalidade da prisão e atuar na audiência de custódia para pleitear a liberdade. Entre em contato com a Silveira Advocacia agora: (35) 99848-1800."
-								}
-							},
-							{
-								"@type": "Question",
-								"name": "Quanto custa um advogado criminal em Campo Belo?",
-								"acceptedAnswer": {
-									"@type": "Answer",
-									"text": "Os honorários advocatícios variam conforme a complexidade do caso, instâncias e dedicação necessária. A Silveira Advocacia oferece consulta inicial para análise do caso. Entre em contato pelo WhatsApp (35) 99848-1800 para uma avaliação."
-								}
-							},
-							{
-								"@type": "Question",
-								"name": "Como funciona o inventário judicial?",
-								"acceptedAnswer": {
-									"@type": "Answer",
-									"text": "O inventário é o processo legal de levantamento e partilha dos bens deixados por uma pessoa falecida. Pode ser feito de forma judicial ou extrajudicial (cartório). O prazo para abertura é de 60 dias a partir do óbito. A Silveira Advocacia atua com celeridade para resolver inventários com ou sem conflito entre herdeiros."
-								}
-							},
-							{
-								"@type": "Question",
-								"name": "O escritório atende fora de Campo Belo?",
-								"acceptedAnswer": {
-									"@type": "Answer",
-									"text": "Sim! A Silveira Advocacia oferece atendimento 100% online para clientes de todo o Brasil. Reuniões por videochamada, assinatura digital de documentos e acompanhamento processual remoto. Entre em contato pelo WhatsApp."
-								}
-							}
-						]
-					},
-					{
-						"@type": "Person",
-						"name": "Richard Silveira",
-						"jobTitle": "Advogado Criminalista",
-						"worksFor": { "@id": "https://silveiraadv.com/#legalservice" },
-						"description": "Sócio fundador da Silveira Advocacia. OAB/MG 114.608. Especialista em direito criminal, cível e de família com mais de 16 anos de atuação."
-					},
-					{
-						"@type": "Person",
-						"name": "Raphael Marques",
-						"jobTitle": "Advogado Civilista",
-						"worksFor": { "@id": "https://silveiraadv.com/#legalservice" },
-						"description": "OAB/MG 231.188. Especialista em direito cível, consumidor, imobiliário, bancário e sucessões."
-					},
-					{
-						"@type": "Person",
-						"name": "Diogo Ferreira",
-						"jobTitle": "Advogado",
-						"worksFor": { "@id": "https://silveiraadv.com/#legalservice" },
-						"description": "Especialista em direito possessório, sucessões, cível e empresarial."
-					},
-					{
-						"@type": "BreadcrumbList",
-						"itemListElement": [
-							{ "@type": "ListItem", "position": 1, "name": "Início", "item": "https://silveiraadv.com/" },
-							{
-								"@type": "ListItem",
-								"position": 2,
-								"name": "Áreas de Atuação",
-								"item": "https://silveiraadv.com/#areas"
-							},
-							{ "@type": "ListItem", "position": 3, "name": "Equipe", "item": "https://silveiraadv.com/#equipe" },
-							{
-								"@type": "ListItem",
-								"position": 4,
-								"name": "Contato",
-								"item": "https://silveiraadv.com/#contato"
-							}
-						]
-					}
-				]
-			}
-		</script>
-
-		<link
-			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-		/>
-
-		<style>
-			:root {
-				--color-white: #ffffff;
-				--color-off-white: #f8f9fa;
-				--color-gray-light: #e9ecef;
-				--color-gray-mid: #6c757d;
-				--color-gray-dark: #343a40;
-				--color-black: #111111;
-				--color-gold: #b8963e;
-				--color-gold-light: #d4af55;
-				--color-gold-dark: #8b6914;
-			}
-
-			*,
-			*::before,
-			*::after {
-				box-sizing: border-box;
-				margin: 0;
-				padding: 0;
-			}
-
-			html {
-				scroll-behavior: smooth;
-			}
-
-			body {
-				font-family: 'Inter', sans-serif;
-				font-size: 16px;
-				color: var(--color-gray-dark);
-				line-height: 1.7;
-				background: var(--color-white);
-			}
-
-			h1,
-			h2,
-			h3 {
-				font-family: 'Playfair Display', serif;
-				line-height: 1.3;
-			}
-
-			a {
-				text-decoration: none;
-				color: inherit;
-				transition: color 0.2s ease;
-			}
-
-			img {
-				max-width: 100%;
-				height: auto;
-				display: block;
-			}
-
-			section {
-				padding: 80px 0;
-				scroll-margin-top: 92px;
-			}
-
-			@media (max-width: 768px) {
-				section {
-					padding: 60px 0;
-				}
-			}
-
-			.container {
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 24px;
-			}
-
-			.tap-target {
-				min-height: 44px;
-				min-width: 44px;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.skip-link {
-				position: fixed;
-				left: 16px;
-				top: -100px;
-				z-index: 2000;
-				background: var(--color-black);
-				color: var(--color-white);
-				padding: 10px 16px;
-				border-radius: 4px;
-			}
-
-			.skip-link:focus {
-				top: 16px;
-			}
-
-			.section-title {
-				font-size: clamp(28px, 4vw, 42px);
-				color: var(--color-black);
-				text-align: center;
-				margin-bottom: 16px;
-			}
-
-			.section-title::after {
-				content: '';
-				display: block;
-				width: 0;
-				height: 2px;
-				background: var(--color-gold);
-				margin: 12px auto 0;
-				transition: width 0.8s ease;
-			}
-
-			.section-title.visible::after {
-				width: 60px;
-			}
-
-			.section-subtitle {
-				font-size: 18px;
-				color: var(--color-gray-mid);
-				text-align: center;
-				max-width: 600px;
-				margin: 0 auto 60px;
-			}
-
-			.btn-primary {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				gap: 8px;
-				background: var(--color-gold);
-				color: var(--color-white);
-				padding: 14px 28px;
-				border-radius: 4px;
-				font-family: 'Inter', sans-serif;
-				font-weight: 600;
-				font-size: 15px;
-				transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-				cursor: pointer;
-				border: none;
-			}
-
-			.btn-primary:hover {
-				background: var(--color-gold-light);
-				transform: translateY(-2px);
-				box-shadow: 0 6px 20px rgba(184, 150, 62, 0.35);
-			}
-
-			.btn-secondary {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				gap: 8px;
-				background: transparent;
-				color: var(--color-white);
-				padding: 14px 28px;
-				border-radius: 4px;
-				border: 2px solid rgba(255, 255, 255, 0.7);
-				font-weight: 600;
-				font-size: 15px;
-				transition: all 0.2s ease;
-			}
-
-			.btn-secondary:hover {
-				background: rgba(255, 255, 255, 0.1);
-				border-color: var(--color-white);
-			}
-
-			.gold-line {
-				width: 50px;
-				height: 2px;
-				background: var(--color-gold);
-				margin: 0 auto 20px;
-			}
-
-			nav {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				z-index: 1000;
-				transition: background 0.3s ease, box-shadow 0.3s ease;
-				background: rgba(255, 255, 255, 0.82);
-				backdrop-filter: blur(10px);
-			}
-
-			nav.scrolled {
-				background: #fff;
-				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-			}
-
-			.nav-inner {
-				min-height: 80px;
-				display: grid;
-				align-items: center;
-				grid-template-columns: 1fr auto;
-				gap: 16px;
-			}
-
-			.brand {
-				display: inline-flex;
-				align-items: center;
-				justify-content: flex-start;
-				gap: 10px;
-			}
-
-			.brand-logo {
-				width: 40px;
-				height: 44px;
-				flex-shrink: 0;
-				background: var(--color-gold);
-				-webkit-mask: url('/images/logo-silveira.png') center / contain no-repeat;
-				mask: url('/images/logo-silveira.png') center / contain no-repeat;
-			}
-
-			.brand-text {
-				display: inline-flex;
-				flex-direction: column;
-				justify-content: center;
-			}
-
-			.brand-main {
-				font-family: 'Playfair Display', serif;
-				color: var(--color-gold-dark);
-				font-size: clamp(20px, 2.5vw, 30px);
-				font-weight: 600;
-				letter-spacing: 0.5px;
-				line-height: 1.1;
-			}
-
-			.brand-sub {
-				display: inline-flex;
-				align-items: center;
-				gap: 8px;
-				color: var(--color-gray-mid);
-				font-size: 12px;
-				letter-spacing: 1.4px;
-				text-transform: uppercase;
-			}
-
-			.brand-sub::before {
-				content: '';
-				width: 1px;
-				height: 14px;
-				background: var(--color-gold);
-			}
-
-			.nav-center,
-			.nav-cta {
-				display: none;
-			}
-
-			.nav-links {
-				list-style: none;
-				display: flex;
-				align-items: center;
-				gap: 24px;
-			}
-
-			.nav-link {
-				position: relative;
-				font-weight: 500;
-				color: var(--color-gray-dark);
-				padding: 10px 0;
-			}
-
-			.nav-link::after {
-				content: '';
-				position: absolute;
-				bottom: -2px;
-				left: 0;
-				width: 0;
-				height: 2px;
-				background: var(--color-gold);
-				transition: width 0.3s ease;
-			}
-
-			.nav-link:hover::after {
-				width: 100%;
-			}
-
-			.menu-toggle {
-				display: inline-flex;
-				width: 44px;
-				height: 44px;
-				border: 1px solid var(--color-gray-light);
-				border-radius: 8px;
-				background: var(--color-white);
-				align-items: center;
-				justify-content: center;
-				flex-direction: column;
-				gap: 5px;
-			}
-
-			.menu-toggle span {
-				width: 20px;
-				height: 2px;
-				border-radius: 2px;
-				background: var(--color-black);
-				transition: transform 0.3s ease, opacity 0.3s ease;
-			}
-
-			.menu-toggle.open span:nth-child(1) {
-				transform: translateY(7px) rotate(45deg);
-			}
-
-			.menu-toggle.open span:nth-child(2) {
-				opacity: 0;
-			}
-
-			.menu-toggle.open span:nth-child(3) {
-				transform: translateY(-7px) rotate(-45deg);
-			}
-
-			.mobile-menu {
-				max-height: 0;
-				overflow: hidden;
-				background: var(--color-white);
-				border-top: 1px solid transparent;
-				transition: max-height 0.35s ease, border-color 0.35s ease;
-			}
-
-			.mobile-menu.open {
-				max-height: 420px;
-				border-top-color: var(--color-gray-light);
-			}
-
-			.mobile-menu ul {
-				list-style: none;
-				padding: 16px 24px;
-			}
-
-			.mobile-menu a {
-				display: block;
-				font-weight: 500;
-				color: var(--color-gray-dark);
-				padding: 10px 0;
-			}
-
-			.mobile-menu .btn-primary {
-				margin-top: 8px;
-				width: 100%;
-			}
-
-			.hero {
-				min-height: 100vh;
-				display: flex;
-				align-items: center;
-				position: relative;
-				background-color: #111111;
-				background-image: url('/images/3AdvogadosJuntos.jpeg');
-				background-size: cover;
-				background-position: center 18%;
-				background-repeat: no-repeat;
-				color: var(--color-white);
-				padding: 120px 0 80px;
-			}
-
-			.hero::before {
-				content: '';
-				position: absolute;
-				inset: 0;
-				background: rgba(10, 10, 10, 0.62);
-			}
-
-			.hero .container {
-				position: relative;
-				z-index: 1;
-			}
-
-			.hero-content {
-				max-width: 900px;
-				margin: 0 auto;
-				text-align: center;
-			}
-
-			.hero-visual-block,
-			.hero-message-block {
-				width: 100%;
-			}
-
-			.hero-content > * {
-				opacity: 0;
-				animation: heroFadeIn 1s ease forwards;
-			}
-
-			.hero-content > *:nth-child(2) {
-				animation-delay: 0.2s;
-			}
-
-			.hero-content > *:nth-child(3) {
-				animation-delay: 0.4s;
-			}
-
-			.hero-content > *:nth-child(4) {
-				animation-delay: 0.6s;
-			}
-
-			.hero-content > *:nth-child(5) {
-				animation-delay: 0.8s;
-			}
-
-			.hero-content > *:nth-child(6) {
-				animation-delay: 1s;
-			}
-
-			.hero-kicker {
-				font-size: clamp(13px, 2vw, 15px);
-				letter-spacing: 4px;
-				text-transform: uppercase;
-				color: rgba(255, 255, 255, 0.95);
-			}
-
-			.hero h1 {
-				font-size: clamp(36px, 7vw, 58px);
-				margin: 16px auto;
-				max-width: 780px;
-			}
-
-			.hero p {
-				font-size: clamp(16px, 2.2vw, 19px);
-				max-width: 720px;
-				margin: 0 auto;
-				color: rgba(255, 255, 255, 0.92);
-			}
-
-			.hero-actions {
-				margin-top: 34px;
-				display: flex;
-				justify-content: center;
-				flex-wrap: wrap;
-				gap: 12px;
-			}
-
-			.hero-credentials {
-				margin-top: 24px;
-				list-style: none;
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				gap: 16px;
-				font-size: 15px;
-			}
-
-			.hero-credentials li {
-				color: rgba(255, 255, 255, 0.92);
-			}
-
-			.hero-credentials i {
-				color: var(--color-gold-light);
-				margin-right: 6px;
-			}
-
-			.scroll-arrow {
-				margin-top: 34px;
-				display: inline-flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 6px;
-				color: var(--color-gold);
-				animation: bounce 1.5s ease infinite;
-			}
-
-			.stats {
-				background: var(--color-white);
-				padding-top: 34px;
-			}
-
-			.stats-grid {
-				display: grid;
-				grid-template-columns: repeat(4, minmax(0, 1fr));
-				gap: 0;
-				border: 1px solid var(--color-gray-light);
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-			}
-
-			.stat-item {
-				text-align: center;
-				padding: 34px 20px;
-				background: var(--color-white);
-			}
-
-			.stat-item + .stat-item {
-				border-left: 1px solid rgba(184, 150, 62, 0.35);
-			}
-
-			.stat-value {
-				display: block;
-				font-family: 'Playfair Display', serif;
-				font-size: clamp(34px, 5vw, 48px);
-				color: var(--color-gold);
-				line-height: 1;
-				margin-bottom: 8px;
-			}
-
-			.stat-label {
-				color: var(--color-gray-dark);
-				font-weight: 500;
-			}
-
-			.areas-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 22px;
-			}
-
-			.area-card {
-				background: var(--color-white);
-				border: 1px solid var(--color-gray-light);
-				border-top: 3px solid transparent;
-				border-radius: 8px;
-				padding: 28px;
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-				transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-			}
-
-			.area-card:hover {
-				transform: translateY(-6px);
-				box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-				border-top-color: var(--color-gold);
-			}
-
-			.area-icon {
-				color: var(--color-gold);
-				font-size: 30px;
-				margin-bottom: 14px;
-			}
-
-			.area-card h3 {
-				font-size: 27px;
-				margin-bottom: 10px;
-			}
-
-			.area-card p {
-				color: var(--color-gray-mid);
-				margin-bottom: 16px;
-			}
-
-			.area-link {
-				font-weight: 600;
-				color: var(--color-gold-dark);
-			}
-
-			.about {
-				background: var(--color-white);
-			}
-
-			.about-grid {
-				display: grid;
-				grid-template-columns: 1.2fr 0.8fr;
-				gap: 28px;
-				align-items: center;
-			}
-
-			.about-badge {
-				display: inline-flex;
-				align-items: center;
-				gap: 8px;
-				background: rgba(184, 150, 62, 0.12);
-				color: var(--color-gold-dark);
-				border: 1px solid rgba(184, 150, 62, 0.3);
-				border-radius: 999px;
-				padding: 7px 14px;
-				margin-bottom: 14px;
-				font-size: 14px;
-				font-weight: 600;
-			}
-
-			.about h2 {
-				font-size: clamp(30px, 4vw, 44px);
-				margin-bottom: 16px;
-			}
-
-			.about p {
-				margin-bottom: 16px;
-				color: var(--color-gray-dark);
-			}
-
-			.about-list {
-				list-style: none;
-				margin: 18px 0 26px;
-			}
-
-			.about-list li {
-				display: flex;
-				gap: 8px;
-				margin-bottom: 8px;
-			}
-
-			.about-list i {
-				color: var(--color-gold);
-				margin-top: 7px;
-			}
-
-			.about-highlight {
-				background: var(--color-off-white);
-				border: 1px solid rgba(184, 150, 62, 0.5);
-				border-radius: 8px;
-				padding: 32px;
-				text-align: center;
-			}
-
-			.about-highlight .num {
-				display: block;
-				font-family: 'Playfair Display', serif;
-				font-size: clamp(42px, 6vw, 56px);
-				color: var(--color-gold);
-				line-height: 1;
-			}
-
-			.about-divider {
-				height: 1px;
-				margin: 20px 0;
-				background: rgba(184, 150, 62, 0.35);
-			}
-
-			.team {
-				background: var(--color-off-white);
-			}
-
-			.team-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 22px;
-				align-items: start;
-			}
-
-			.team-card {
-				background: var(--color-white);
-				border-radius: 8px;
-				border: 1px solid var(--color-gray-light);
-				overflow: hidden;
-				max-width: 420px;
-				width: 100%;
-				margin: 0 auto;
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-			}
-
-			.team-card:hover {
-				transform: scale(1.02);
-				box-shadow: 0 14px 34px rgba(0, 0, 0, 0.13);
-			}
-
-			.lawyer-photo {
-				height: 360px;
-				background: #f1f2f3;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-				position: relative;
-				z-index: 1;
-			}
-
-			.lawyer-photo img {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-				object-position: center top;
-				transform: scale(1.08);
-				transform-origin: center top;
-			}
-
-			.team-content {
-				padding: 24px;
-				position: relative;
-				z-index: 2;
-				background: var(--color-white);
-			}
-
-			.founder-badge {
-				display: inline-block;
-				background: rgba(184, 150, 62, 0.16);
-				color: var(--color-gold-dark);
-				border: 1px solid rgba(184, 150, 62, 0.35);
-				font-size: 12px;
-				letter-spacing: 0.6px;
-				border-radius: 999px;
-				text-transform: uppercase;
-				font-weight: 600;
-				padding: 6px 12px;
-				margin-bottom: 10px;
-			}
-
-			.team-content h3 {
-				font-size: 30px;
-				margin-bottom: 4px;
-			}
-
-			.team-oab {
-				color: var(--color-gray-mid);
-				font-size: 15px;
-				margin-bottom: 12px;
-			}
-
-			.chip-group {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 8px;
-				margin-bottom: 14px;
-			}
-
-			.chip {
-				background: var(--color-off-white);
-				border: 1px solid var(--color-gray-light);
-				border-radius: 999px;
-				padding: 5px 10px;
-				font-size: 12px;
-				font-weight: 600;
-				color: var(--color-gray-dark);
-			}
-
-			.process-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 20px;
-				position: relative;
-			}
-
-			.process-grid::before {
-				content: '';
-				position: absolute;
-				top: 44px;
-				left: 10%;
-				width: 80%;
-				height: 2px;
-				background: rgba(184, 150, 62, 0.5);
-			}
-
-			.process-step {
-				position: relative;
-				z-index: 1;
-				background: var(--color-white);
-				border-radius: 8px;
-				border: 1px solid var(--color-gray-light);
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-				padding: 28px;
-			}
-
-			.process-icon {
-				width: 56px;
-				height: 56px;
-				margin-bottom: 14px;
-				border-radius: 50%;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				background: rgba(184, 150, 62, 0.15);
-				color: var(--color-gold-dark);
-				font-size: 24px;
-			}
-
-			.process-step h3 {
-				font-size: 29px;
-				margin-bottom: 8px;
-			}
-
-			.testimonials {
-				background: var(--color-off-white);
-			}
-
-			.testimonials-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 20px;
-			}
-
-			.testimonial-card {
-				background: var(--color-white);
-				border-radius: 8px;
-				border-left: 3px solid var(--color-gold);
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-				padding: 24px;
-			}
-
-			.testimonial-stars {
-				color: var(--color-gold);
-				letter-spacing: 2px;
-				margin-bottom: 10px;
-			}
-
-			.testimonial-card h3 {
-				font-size: 26px;
-				margin-bottom: 8px;
-			}
-
-			.testimonial-source {
-				margin-top: 10px;
-				font-size: 14px;
-				color: var(--color-gray-mid);
-			}
-
-			.faq-list {
-				max-width: 900px;
-				margin: 0 auto;
-			}
-
-			.faq-item {
-				border: 1px solid var(--color-gray-light);
-				border-radius: 8px;
-				overflow: hidden;
-				margin-bottom: 12px;
-				background: var(--color-white);
-			}
-
-			.faq-question {
-				width: 100%;
-				text-align: left;
-				border: 0;
-				background: var(--color-white);
-				color: var(--color-black);
-				padding: 16px 20px;
-				font-size: 17px;
-				font-weight: 600;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				cursor: pointer;
-			}
-
-			.faq-question i {
-				color: var(--color-gold);
-				transition: transform 0.3s ease;
-			}
-
-			.faq-item.open .faq-question i {
-				transform: rotate(180deg);
-			}
-
-			.faq-answer {
-				max-height: 0;
-				overflow: hidden;
-				transition: max-height 0.35s ease;
-			}
-
-			.faq-answer p {
-				padding: 0 20px 20px;
-				color: var(--color-gray-dark);
-			}
-
-			.contact {
-				background: var(--color-off-white);
-			}
-
-			.contact-grid {
-				display: grid;
-				grid-template-columns: 1.1fr 0.9fr;
-				gap: 24px;
-			}
-
-			.contact-info-list {
-				display: grid;
-				gap: 12px;
-				margin-bottom: 20px;
-			}
-
-			.contact-info-item {
-				display: flex;
-				gap: 12px;
-				align-items: flex-start;
-				background: var(--color-white);
-				border: 1px solid var(--color-gray-light);
-				border-radius: 8px;
-				padding: 12px 14px;
-			}
-
-			.contact-info-item i {
-				color: var(--color-gold);
-				margin-top: 6px;
-			}
-
-			.map-box {
-				border: 1px solid var(--color-gray-light);
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-			}
-
-			.contact-cta-card {
-				background: var(--color-black);
-				border-radius: 8px;
-				color: var(--color-white);
-				padding: 34px;
-				border: 1px solid rgba(184, 150, 62, 0.4);
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-			}
-
-			.contact-cta-card h3 {
-				font-size: clamp(30px, 4vw, 38px);
-				margin-bottom: 14px;
-			}
-
-			.contact-cta-card p {
-				color: rgba(255, 255, 255, 0.88);
-			}
-
-			.contact-cta-card .btn-primary {
-				margin: 22px 0 16px;
-				width: 100%;
-			}
-
-			.contact-call {
-				display: inline-flex;
-				align-items: center;
-				gap: 8px;
-				color: var(--color-white);
-			}
-
-			.contact-cta-foot {
-				margin-top: 16px;
-				padding-top: 16px;
-				border-top: 1px solid rgba(184, 150, 62, 0.3);
-				color: rgba(255, 255, 255, 0.8);
-				font-size: 14px;
-			}
-
-			footer {
-				background: var(--color-black);
-				color: rgba(255, 255, 255, 0.82);
-				padding-top: 60px;
-			}
-
-			.footer-grid {
-				display: grid;
-				grid-template-columns: 1.1fr 1fr 1fr;
-				gap: 24px;
-			}
-
-			.footer-brand h3 {
-				color: var(--color-white);
-				font-size: 30px;
-			}
-
-			.footer-logo {
-				display: block;
-				width: 54px;
-				height: 62px;
-				background: var(--color-gold);
-				margin-bottom: 12px;
-				-webkit-mask: url('/images/logo-silveira.png') center / contain no-repeat;
-				mask: url('/images/logo-silveira.png') center / contain no-repeat;
-			}
-
-			.footer-brand .sub {
-				color: var(--color-gold);
-				margin-bottom: 12px;
-			}
-
-			.footer-title {
-				color: var(--color-white);
-				font-size: 26px;
-				margin-bottom: 12px;
-			}
-
-			.footer-list {
-				list-style: none;
-			}
-
-			.footer-list li {
-				margin-bottom: 8px;
-			}
-
-			.footer-list a,
-			.footer-contact a,
-			.contact-info-item a {
-				display: inline-flex;
-				align-items: center;
-				min-height: 44px;
-			}
-
-			.footer-list a:hover,
-			.footer-contact a:hover,
-			.social-link:hover {
-				color: var(--color-gold-light);
-			}
-
-			.social-link {
-				margin-top: 14px;
-				display: inline-flex;
-				width: 44px;
-				height: 44px;
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				border-radius: 50%;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.footer-contact p,
-			.footer-contact a {
-				margin-bottom: 8px;
-				display: block;
-			}
-
-			.footer-bottom {
-				margin-top: 28px;
-				border-top: 1px solid rgba(255, 255, 255, 0.15);
-				padding: 18px 0;
-				font-size: 14px;
-			}
-
-			.footer-bottom-row {
-				display: flex;
-				justify-content: space-between;
-				gap: 12px;
-				flex-wrap: wrap;
-			}
-
-			.footer-bottom-links {
-				display: inline-flex;
-				gap: 12px;
-			}
-
-			.text-button {
-				border: 0;
-				background: transparent;
-				color: rgba(255, 255, 255, 0.85);
-				cursor: pointer;
-				font-size: 14px;
-			}
-
-			.text-button:hover {
-				color: var(--color-gold-light);
-			}
-
-			.modal {
-				position: fixed;
-				inset: 0;
-				z-index: 1200;
-				background: rgba(0, 0, 0, 0.62);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 20px;
-				opacity: 0;
-				pointer-events: none;
-				transition: opacity 0.2s ease;
-			}
-
-			.modal.open {
-				opacity: 1;
-				pointer-events: auto;
-			}
-
-			.modal-content {
-				width: min(760px, 100%);
-				max-height: 85vh;
-				overflow: auto;
-				border-radius: 8px;
-				background: var(--color-white);
-				padding: 24px;
-				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
-				position: relative;
-			}
-
-			.modal-content h3 {
-				font-size: 30px;
-				margin-bottom: 10px;
-			}
-
-			.modal-content p {
-				margin-bottom: 10px;
-			}
-
-			.modal-close {
-				position: absolute;
-				right: 10px;
-				top: 10px;
-				width: 44px;
-				height: 44px;
-				border: 0;
-				border-radius: 50%;
-				background: var(--color-off-white);
-				cursor: pointer;
-			}
-
-			.reveal {
-				opacity: 0;
-				transform: translateY(40px);
-				transition: opacity 0.7s ease, transform 0.7s ease;
-			}
-
-			.reveal.visible {
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			.reveal:nth-child(1) {
-				transition-delay: 0s;
-			}
-
-			.reveal:nth-child(2) {
-				transition-delay: 0.1s;
-			}
-
-			.reveal:nth-child(3) {
-				transition-delay: 0.2s;
-			}
-
-			.reveal:nth-child(4) {
-				transition-delay: 0.3s;
-			}
-
-			@keyframes pulse {
-				0%,
-				100% {
-					box-shadow: 0 0 0 0 rgba(184, 150, 62, 0.5);
-				}
-
-				50% {
-					box-shadow: 0 0 0 12px rgba(184, 150, 62, 0);
-				}
-			}
-
-			@keyframes heroFadeIn {
-				from {
-					opacity: 0;
-					transform: translateY(20px);
-				}
-
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-
-			@keyframes bounce {
-				0%,
-				100% {
-					transform: translateY(0);
-				}
-
-				50% {
-					transform: translateY(8px);
-				}
-			}
-
-			.whatsapp-float {
-				position: fixed;
-				bottom: 28px;
-				right: 28px;
-				z-index: 9999;
-				width: 60px;
-				height: 60px;
-				background: #25d366;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 28px;
-				color: var(--color-white);
-				box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-				animation: pulse 2.5s infinite;
-				transition: transform 0.2s ease;
-			}
-
-			.whatsapp-float:hover {
-				transform: scale(1.1);
-			}
-
-			.whatsapp-tooltip {
-				position: absolute;
-				right: 70px;
-				background: var(--color-black);
-				color: var(--color-white);
-				padding: 6px 12px;
-				border-radius: 4px;
-				white-space: nowrap;
-				font-size: 13px;
-				opacity: 0;
-				pointer-events: none;
-				transition: opacity 0.2s ease;
-			}
-
-			.whatsapp-float:hover .whatsapp-tooltip {
-				opacity: 1;
-			}
-
-			@media (min-width: 1024px) {
-				.nav-inner {
-					grid-template-columns: auto 1fr auto;
-					gap: 30px;
-				}
-
-				.nav-center,
-				.nav-cta {
-					display: flex;
-				}
-
-				.nav-center {
-					justify-content: center;
-				}
-
-				.menu-toggle,
-				.mobile-menu {
-					display: none;
-				}
-			}
-
-			@media (max-width: 1023px) {
-				.hero {
-					background-position: center 22%;
-				}
-
-				.lawyer-photo {
-					height: 330px;
-				}
-
-				.hero-credentials {
-					flex-direction: column;
-					gap: 8px;
-				}
-
-				.hero-credentials li {
-					text-align: center;
-				}
-
-				.areas-grid,
-				.team-grid,
-				.testimonials-grid {
-					grid-template-columns: repeat(2, minmax(0, 1fr));
-				}
-
-				.about-grid,
-				.contact-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.process-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.process-grid::before {
-					top: 40px;
-					left: 28px;
-					width: 2px;
-					height: calc(100% - 80px);
-				}
-
-				.process-icon {
-					margin-bottom: 10px;
-				}
-
-				.footer-grid {
-					grid-template-columns: 1fr 1fr;
-				}
-			}
-
-			@media (max-width: 768px) {
-				.container {
-					padding: 0 16px;
-				}
-
-				.hero {
-					background-size: 120% auto;
-					background-position: center 12%;
-					background-repeat: no-repeat;
-				}
-
-				.hero::before {
-					background: linear-gradient(180deg, rgba(10, 10, 10, 0.42) 0%, rgba(10, 10, 10, 0.62) 52%, rgba(10, 10, 10, 0.86) 100%);
-				}
-
-				.hero-content {
-					max-width: 390px;
-					display: flex;
-					flex-direction: column;
-					gap: 0;
-				}
-
-				.hero-visual-block {
-					padding: 18px 14px 10px;
-					border-radius: 14px 14px 0 0;
-					border: 1px solid rgba(255, 255, 255, 0.16);
-					border-bottom: 0;
-					background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
-				}
-
-				.hero-visual-block .gold-line {
-					margin-bottom: 12px;
-				}
-
-				.hero-visual-block h1 {
-					margin-bottom: 0;
-				}
-
-				.hero-message-block {
-					padding: 16px 14px;
-					background: rgba(6, 6, 6, 0.92);
-					border: 1px solid rgba(184, 150, 62, 0.3);
-					border-top: 1px solid rgba(184, 150, 62, 0.22);
-					border-radius: 0 0 14px 14px;
-					box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-					margin-top: -1px;
-				}
-
-				.hero-message-block > p {
-					font-size: 16px;
-					line-height: 1.55;
-				}
-
-				.hero-message-block .hero-actions {
-					margin-top: 14px;
-				}
-
-				.hero-message-block .hero-credentials {
-					margin-top: 12px;
-					gap: 8px;
-					font-size: 14px;
-				}
-
-				.hero-message-block .hero-credentials li {
-					width: 100%;
-					text-align: left;
-				}
-
-				.brand-logo {
-					width: 34px;
-					height: 38px;
-				}
-
-				.lawyer-photo {
-					height: 310px;
-				}
-
-				.stats-grid {
-					grid-template-columns: repeat(2, minmax(0, 1fr));
-				}
-
-				.stat-item:nth-child(2n) {
-					border-left: 1px solid rgba(184, 150, 62, 0.35);
-				}
-
-				.stat-item:nth-child(n + 3) {
-					border-top: 1px solid rgba(184, 150, 62, 0.35);
-				}
-
-				.areas-grid,
-				.team-grid,
-				.testimonials-grid,
-				.footer-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.hero {
-					min-height: auto;
-					padding-top: 100px;
-					padding-bottom: 48px;
-				}
-
-				.hero-actions {
-					flex-direction: column;
-				}
-
-				.hero-actions .btn-primary,
-				.hero-actions .btn-secondary {
-					width: 100%;
-				}
-
-				.scroll-arrow {
-					margin-top: 8px;
-				}
-
-				.whatsapp-float {
-					bottom: 16px;
-					right: 16px;
-				}
-
-				.whatsapp-tooltip {
-					display: none;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
-
-		<header id="inicio">
-			<nav id="top-nav" aria-label="Navegação principal">
-				<div class="container nav-inner">
-					<a class="brand tap-target" href="#inicio" aria-label="Ir para o início">
-						<span class="brand-logo" aria-hidden="true"></span>
-						<span class="brand-text">
-							<span class="brand-main">Silveira Advocacia</span>
-							<span class="brand-sub">Advogados Associados</span>
-						</span>
-					</a>
-
-					<div class="nav-center">
-						<ul class="nav-links">
-							<li><a class="nav-link tap-target" href="#inicio">Início</a></li>
-							<li><a class="nav-link tap-target" href="#areas">Áreas de Atuação</a></li>
-							<li><a class="nav-link tap-target" href="#equipe">Nossa Equipe</a></li>
-							<li><a class="nav-link tap-target" href="#depoimentos">Depoimentos</a></li>
-							<li><a class="nav-link tap-target" href="#contato">Contato</a></li>
-						</ul>
-					</div>
-
-					<div class="nav-cta">
+				'@type': 'Question',
+				name: 'O que fazer se fui preso em flagrante?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Se você ou um familiar foi preso em flagrante, o primeiro e mais importante passo é contatar imediatamente um advogado criminalista. O advogado irá acompanhar a lavratura do auto de prisão em flagrante, verificar a legalidade da prisão e atuar na audiência de custódia, que deve ocorrer em até 24 horas, para pleitear a liberdade ou melhores condições de prisão. Não espere: ligue agora para a Silveira Advocacia, (35) 99848-1800.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Quanto custa um advogado criminal em Campo Belo?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Os honorários advocatícios variam de acordo com a complexidade do caso, o número de instâncias, a dedicação necessária e o tipo de serviço prestado. Na Silveira Advocacia, oferecemos uma avaliação inicial do caso para entender a situação e apresentar uma proposta justa e transparente. Entre em contato pelo WhatsApp para conversar sem compromisso.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Como funciona o inventário judicial?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'O inventário é o processo legal de levantamento, avaliação e partilha dos bens deixados por uma pessoa falecida. O prazo para abertura é de 60 dias após o óbito. Pode ser feito de forma extrajudicial (cartório, mais rápido, quando não há menores envolvidos e todos os herdeiros concordam) ou judicial (quando há conflito). A Silveira Advocacia atua com celeridade em ambas as modalidades.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'O escritório atende clientes fora de Campo Belo?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Sim! Oferecemos atendimento 100% online para clientes em qualquer cidade do Brasil. As reuniões são feitas por videochamada, os documentos são assinados digitalmente e o acompanhamento processual é feito de forma remota. Não importa onde você esteja, podemos te atender.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'O que é usucapião e qual o prazo?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Usucapião é o direito de adquirir a propriedade de um bem pelo uso prolongado e ininterrupto, desde que preenchidos os requisitos legais. Os prazos variam: usucapião ordinária exige 10 anos de posse; a extraordinária exige 15 anos; a especial urbana ou rural exige 5 anos em condições específicas. A Silveira Advocacia analisa cada caso para identificar o melhor caminho.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Como funciona a renegociação de dívidas bancárias?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'O processo envolve a análise do contrato e do histórico da dívida para identificar irregularidades, como juros abusivos, capitalização indevida e cobranças ilícitas, seguida de negociação direta com o banco ou credores. Em muitos casos, é possível reduzir significativamente o valor total da dívida. Entre em contato para uma análise.',
+				},
+			},
+		],
+	},
+];
+---
+
+<Layout
+	title="Advocacia em Campo Belo MG | Silveira Advocacia"
+	description="Silveira Advocacia, escritório de advocacia em Campo Belo MG com mais de 16 anos de experiência em direito criminal, cível, família e bancário. Fale agora."
+	keywords="advogado criminal campo belo, advogado cível MG, defesa criminal campo belo, advogado flagrante MG, inventário campo belo, divórcio campo belo, advogado bancário MG, usucapião MG, Silveira Advocacia"
+	canonicalPath="/"
+	structuredData={homeStructuredData}
+>
+	<section class="hero" aria-labelledby="hero-title">
+		<div class="container">
+			<div class="hero-content">
+				<div class="hero-visual-block">
+					<div class="gold-line"></div>
+					<p class="hero-kicker">SILVEIRA ADVOCACIA</p>
+					<p class="hero-kicker">ADVOGADOS ASSOCIADOS · CAMPO BELO/MG · DESDE 2008</p>
+					<h1 id="hero-title">Defesa experiente.<br />Atendimento humanizado.</h1>
+				</div>
+
+				<div class="hero-message-block">
+					<p>
+						Mais de 16 anos defendendo direitos com estratégia, ética e comprometimento. Atuamos em direito
+						criminal, cível, bancário e família, presencialmente em Campo Belo/MG e 100% online em todo o Brasil.
+					</p>
+					<div class="hero-actions">
 						<a
 							href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
 							class="btn-primary tap-target"
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label="Falar no WhatsApp"
+							aria-label="Falar no WhatsApp agora"
 						>
 							<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-							Falar no WhatsApp
+							Falar no WhatsApp Agora
+						</a>
+						<a href="#areas" class="btn-secondary tap-target" aria-label="Conhecer o escritório">
+							Conhecer o Escritório
 						</a>
 					</div>
-
-					<button
-						id="menu-toggle"
-						class="menu-toggle tap-target"
-						type="button"
-						aria-label="Abrir menu"
-						aria-expanded="false"
-						aria-controls="mobile-menu"
-					>
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-				</div>
-
-				<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-					<ul>
-						<li><a class="tap-target" href="#inicio">Início</a></li>
-						<li><a class="tap-target" href="#areas">Áreas de Atuação</a></li>
-						<li><a class="tap-target" href="#equipe">Nossa Equipe</a></li>
-						<li><a class="tap-target" href="#depoimentos">Depoimentos</a></li>
-						<li><a class="tap-target" href="#contato">Contato</a></li>
+					<ul class="hero-credentials" aria-label="Credenciais do escritório">
 						<li>
-							<a
-								href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-								class="btn-primary tap-target"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Falar no WhatsApp"
-							>
-								<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-								Falar no WhatsApp
-							</a>
+							<i class="fa-solid fa-check" aria-hidden="true"></i>
+							500+ Defesas Criminais
+						</li>
+						<li>
+							<i class="fa-solid fa-check" aria-hidden="true"></i>
+							16+ Anos de Experiência
+						</li>
+						<li>
+							<i class="fa-solid fa-check" aria-hidden="true"></i>
+							Atendimento Imediato
 						</li>
 					</ul>
 				</div>
-			</nav>
-		</header>
 
-		<main id="main-content">
-			<section class="hero" aria-labelledby="hero-title">
-				<div class="container">
-					<div class="hero-content">
-						<div class="hero-visual-block">
-							<div class="gold-line"></div>
-							<p class="hero-kicker">SILVEIRA ADVOCACIA</p>
-							<p class="hero-kicker">ADVOGADOS ASSOCIADOS · CAMPO BELO/MG · DESDE 2008</p>
-							<h1 id="hero-title">Defesa experiente.<br />Atendimento humanizado.</h1>
-						</div>
+				<a href="#stats" class="scroll-arrow tap-target" aria-label="Rolar para a próxima seção">
+					<span>Rolar</span>
+					<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</section>
 
-						<div class="hero-message-block">
-							<p>
-								Mais de 16 anos defendendo direitos com estratégia, ética e comprometimento. Atuamos em direito
-								criminal, cível, bancário e família, presencialmente em Campo Belo/MG e 100% online em todo o Brasil.
-							</p>
-							<div class="hero-actions">
-								<a
-									href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-									class="btn-primary tap-target"
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label="Falar no WhatsApp agora"
-								>
-									<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-									Falar no WhatsApp Agora
-								</a>
-								<a href="#areas" class="btn-secondary tap-target" aria-label="Conhecer o escritório">
-									Conhecer o Escritório
-								</a>
-							</div>
-							<ul class="hero-credentials" aria-label="Credenciais do escritório">
-								<li>
-									<i class="fa-solid fa-check" aria-hidden="true"></i>
-									500+ Defesas Criminais
-								</li>
-								<li>
-									<i class="fa-solid fa-check" aria-hidden="true"></i>
-									16+ Anos de Experiência
-								</li>
-								<li>
-									<i class="fa-solid fa-check" aria-hidden="true"></i>
-									Atendimento Imediato
-								</li>
-							</ul>
-						</div>
-
-						<a href="#stats" class="scroll-arrow tap-target" aria-label="Rolar para a próxima seção">
-							<span>Rolar</span>
-							<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-						</a>
-					</div>
+	<section class="stats" id="stats" aria-label="Números de impacto">
+		<div class="container">
+			<div class="stats-grid reveal">
+				<div class="stat-item">
+					<span class="stat-value" data-target="500" data-suffix="+">0+</span>
+					<p class="stat-label">Defesas Criminais</p>
 				</div>
-			</section>
-
-			<section class="stats" id="stats" aria-label="Números de impacto">
-				<div class="container">
-					<div class="stats-grid reveal">
-						<div class="stat-item">
-							<span class="stat-value" data-target="500" data-suffix="+">0+</span>
-							<p class="stat-label">Defesas Criminais</p>
-						</div>
-						<div class="stat-item">
-							<span class="stat-value" data-target="16" data-suffix="+">0+</span>
-							<p class="stat-label">Anos de Experiência</p>
-						</div>
-						<div class="stat-item">
-							<span class="stat-value" data-target="3">0</span>
-							<p class="stat-label">Advogados Especialistas</p>
-						</div>
-						<div class="stat-item">
-							<span class="stat-value" data-target="31" data-suffix="+">0+</span>
-							<p class="stat-label">Avaliações no Google</p>
-						</div>
-					</div>
+				<div class="stat-item">
+					<span class="stat-value" data-target="16" data-suffix="+">0+</span>
+					<p class="stat-label">Anos de Experiência</p>
 				</div>
-			</section>
-
-			<section id="areas">
-				<div class="container">
-					<h2 class="section-title reveal">Como Podemos Te Ajudar</h2>
-					<p class="section-subtitle reveal">
-						Soluções jurídicas completas com estratégia, ética e transparência. Conheça nossas principais áreas de
-						especialização.
-					</p>
-
-					<div class="areas-grid">
-						<article class="area-card reveal">
-							<i class="fa-solid fa-gavel area-icon" aria-hidden="true"></i>
-							<h3>Direito Criminal</h3>
-							<p>
-								Mais de 500 defesas criminais. Atuamos em flagrante delito, homicídio, tráfico, furto, roubo e muito
-								mais. Defesa técnica e imediata.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Direito Criminal">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-handcuffs area-icon" aria-hidden="true"></i>
-							<h3>Flagrante Delito</h3>
-							<p>
-								Preso em flagrante? Atuamos imediatamente na audiência de custódia para garantir sua liberdade ou a de
-								seu familiar.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Flagrante Delito">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-file-contract area-icon" aria-hidden="true"></i>
-							<h3>Direito Cível</h3>
-							<p>
-								Resolução de conflitos, cobranças, indenizações e obrigações contratuais. Defendemos seus direitos com
-								eficiência.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Direito Cível">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-landmark area-icon" aria-hidden="true"></i>
-							<h3>Direito Bancário</h3>
-							<p>
-								Renegociação de dívidas, revisão de contrato de financiamento, golpes e fraudes financeiras. Protegemos
-								seu patrimônio.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Direito Bancário">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-scroll area-icon" aria-hidden="true"></i>
-							<h3>Inventário e Sucessões</h3>
-							<p>
-								Inventário judicial e extrajudicial com celeridade, mesmo em casos com conflito entre herdeiros.
-								Atuamos em todo o processo.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Inventário e Sucessões">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-people-roof area-icon" aria-hidden="true"></i>
-							<h3>Direito de Família</h3>
-							<p>
-								Divórcio, guarda de filhos, pensão alimentícia, reconhecimento de paternidade. Cuidamos com
-								sensibilidade e estratégia.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Direito de Família">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-house area-icon" aria-hidden="true"></i>
-							<h3>Usucapião</h3>
-							<p>
-								Regularização de imóveis por usucapião, todos os tipos e prazos. Transformamos posse em propriedade
-								legalmente garantida.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Usucapião">Saiba mais →</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-building area-icon" aria-hidden="true"></i>
-							<h3>Direito Imobiliário</h3>
-							<p>
-								Compra e venda, locação, distrato, ações possessórias e regularização fundiária. Segurança jurídica no
-								seu imóvel.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Direito Imobiliário">
-								Saiba mais →
-							</a>
-						</article>
-
-						<article class="area-card reveal">
-							<i class="fa-solid fa-circle-dollar-to-slot area-icon" aria-hidden="true"></i>
-							<h3>Renegociação de Dívidas</h3>
-							<p>
-								Negociamos diretamente com credores e instituições financeiras para reduzir juros abusivos e parcelar
-								dívidas de forma viável.
-							</p>
-							<a class="area-link tap-target" href="#contato" aria-label="Saiba mais sobre Renegociação de Dívidas">
-								Saiba mais →
-							</a>
-						</article>
-					</div>
+				<div class="stat-item">
+					<span class="stat-value" data-target="3">0</span>
+					<p class="stat-label">Advogados Especialistas</p>
 				</div>
-			</section>
-
-			<section id="sobre" class="about">
-				<div class="container about-grid">
-					<div class="reveal">
-						<span class="about-badge">Fundado em 2008</span>
-						<h2>Silveira Advocacia Advogados Associados</h2>
-						<p>
-							Somos um escritório de advocacia com mais de 16 anos de história, fundado pelo Dr. Richard Silveira em
-							2008 na cidade de Campo Belo, Minas Gerais. Ao longo de nossa trajetória, construímos uma sólida
-							reputação baseada em resultados concretos, atendimento humanizado e atuação técnica de excelência.
-						</p>
-						<p>
-							Hoje, o escritório conta com três sócios especialistas, Dr. Richard Silveira, Dr. Raphael Marques e Dr.
-							Diogo Ferreira, cobrindo as principais áreas do direito com profundidade e comprometimento. Atendemos
-							presencialmente em Campo Belo/MG e 100% online em todo o Brasil.
-						</p>
-						<ul class="about-list" aria-label="Diferenciais da Silveira Advocacia">
-							<li>
-								<i class="fa-solid fa-check" aria-hidden="true"></i>
-								<span>Mais de 500 defesas criminais bem-sucedidas</span>
-							</li>
-							<li>
-								<i class="fa-solid fa-check" aria-hidden="true"></i>
-								<span>Equipe multidisciplinar com 3 advogados especialistas</span>
-							</li>
-							<li>
-								<i class="fa-solid fa-check" aria-hidden="true"></i>
-								<span>Atendimento imediato via WhatsApp</span>
-							</li>
-							<li>
-								<i class="fa-solid fa-check" aria-hidden="true"></i>
-								<span>Transparência total na estratégia e nos honorários</span>
-							</li>
-							<li>
-								<i class="fa-solid fa-check" aria-hidden="true"></i>
-								<span>Atendimento presencial e 100% online</span>
-							</li>
-						</ul>
-						<a
-							href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-							class="btn-primary tap-target"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="Falar com um advogado pelo WhatsApp"
-						>
-							<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-							Fale com um Advogado
-						</a>
-					</div>
-
-					<aside class="about-highlight reveal" aria-label="Resumo de experiência da equipe">
-						<span class="num">16+</span>
-						<p>Anos de Experiência</p>
-						<div class="about-divider"></div>
-						<span class="num">500+</span>
-						<p>Defesas Criminais</p>
-						<div class="about-divider"></div>
-						<span class="num" style="font-size: clamp(30px, 4vw, 40px);">Campo Belo/MG</span>
-						<p>Rua Dom Pedro I, nº 139, Centro</p>
-					</aside>
+				<div class="stat-item">
+					<span class="stat-value" data-target="31" data-suffix="+">0+</span>
+					<p class="stat-label">Avaliações no Google</p>
 				</div>
-			</section>
+			</div>
+		</div>
+	</section>
 
-			<section id="equipe" class="team">
-				<div class="container">
-					<h2 class="section-title reveal">Nossa Equipe</h2>
-					<p class="section-subtitle reveal">Advogados especialistas comprometidos com a excelência jurídica.</p>
+	<section id="areas">
+		<div class="container">
+			<h2 class="section-title reveal">Como Podemos Te Ajudar</h2>
+			<p class="section-subtitle reveal">
+				Soluções jurídicas completas com estratégia, ética e transparência. Conheça nossas principais áreas de
+				especialização.
+			</p>
 
-					<div class="team-grid">
-						<article class="team-card reveal">
-							<div class="lawyer-photo">
-								<img
-									src="/images/advgadoRicard.jpeg"
-									alt="Dr. Richard Silveira - Advogado Criminal OAB/MG 114.608"
-									loading="lazy"
-								/>
-							</div>
-							<div class="team-content">
-								<span class="founder-badge">Sócio Fundador</span>
-								<h3>Dr. Richard Silveira</h3>
-								<p class="team-oab">OAB/MG 114.608</p>
-								<div class="chip-group">
-									<span class="chip">Criminal</span>
-									<span class="chip">Cível</span>
-									<span class="chip">Família</span>
-								</div>
-								<p>
-									Fundador do escritório em 2008, o Dr. Richard é referência em direito criminal em Campo Belo/MG. Com
-									ampla atuação também no direito cível e de família, lidera a equipe com mais de 16 anos de dedicação
-									à advocacia.
-								</p>
-							</div>
-						</article>
-
-						<article class="team-card reveal">
-							<div class="lawyer-photo">
-								<img
-									src="/images/AdvogadoRaphael.jpeg"
-									alt="Dr. Raphael Marques - Advogado OAB/MG 231.188"
-									loading="lazy"
-								/>
-							</div>
-							<div class="team-content">
-								<h3>Dr. Raphael Marques</h3>
-								<p class="team-oab">OAB/MG 231.188</p>
-								<div class="chip-group">
-									<span class="chip">Cível</span>
-									<span class="chip">Bancário</span>
-									<span class="chip">Imobiliário</span>
-									<span class="chip">Consumidor</span>
-								</div>
-								<p>
-									Especialista em direito cível e das relações de consumo, o Dr. Raphael atua com precisão técnica nas
-									áreas bancária, imobiliária e de sucessões, sempre buscando a solução mais favorável ao cliente.
-								</p>
-							</div>
-						</article>
-
-						<article class="team-card reveal">
-							<div class="lawyer-photo">
-								<img src="/images/advogadoDiogo.jpeg" alt="Dr. Diogo Ferreira - Advogado OAB/MG" loading="lazy" />
-							</div>
-							<div class="team-content">
-								<h3>Dr. Diogo Ferreira</h3>
-								<p class="team-oab">OAB/MG</p>
-								<div class="chip-group">
-									<span class="chip">Possessório</span>
-									<span class="chip">Empresarial</span>
-									<span class="chip">Cível</span>
-									<span class="chip">Sucessões</span>
-								</div>
-								<p>
-									Com vasta experiência no direito possessório e empresarial, o Dr. Diogo traz solidez jurídica na
-									resolução de conflitos envolvendo propriedade, sucessões e relações empresariais.
-								</p>
-							</div>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section id="processo">
-				<div class="container">
-					<h2 class="section-title reveal">Como Iniciar o Processo</h2>
-					<p class="section-subtitle reveal">
-						Atendimento claro, rápido e estratégico do primeiro contato até a solução jurídica.
-					</p>
-
-					<div class="process-grid">
-						<article class="process-step reveal">
-							<span class="process-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
-							<h3>Fale Conosco</h3>
-							<p>
-								Entre em contato pelo WhatsApp ou telefone. Nossa equipe está pronta para receber você com atenção e
-								discrição. Sem burocracia.
-							</p>
-						</article>
-
-						<article class="process-step reveal">
-							<span class="process-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
-							<h3>Análise e Orientação</h3>
-							<p>
-								Nossos advogados fazem a análise completa do seu caso, explicam seus direitos e apresentam a estratégia
-								defensiva ideal.
-							</p>
-						</article>
-
-						<article class="process-step reveal">
-							<span class="process-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
-							<h3>Solução</h3>
-							<p>
-								Trabalhamos com comprometimento total para garantir a melhor solução ao seu caso, com transparência em
-								cada etapa do processo.
-							</p>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section id="depoimentos" class="testimonials">
-				<div class="container">
-					<h2 class="section-title reveal">O que dizem nossos clientes</h2>
-					<p class="section-subtitle reveal">⭐⭐⭐⭐⭐ EXCELENTE — 31 avaliações no Google</p>
-
-					<div class="testimonials-grid">
-						<article class="testimonial-card reveal">
-							<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
-							<h3>Lorena Carolina Mendes</h3>
-							<p>
-								Equipe sensacional! Super atenciosos e prontos para resolver qualquer problema. Recomendo a todos que
-								precisam de uma defesa competente e humana.
-							</p>
-							<p class="testimonial-source">Google Reviews</p>
-						</article>
-
-						<article class="testimonial-card reveal">
-							<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
-							<h3>Luciano Melo</h3>
-							<p>
-								Ótimos profissionais. Tive meu caso resolvido com rapidez e competência. Dr. Richard foi impecável em
-								toda a condução do processo.
-							</p>
-							<p class="testimonial-source">Google Reviews</p>
-						</article>
-
-						<article class="testimonial-card reveal">
-							<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
-							<h3>Gabriel Ferreira</h3>
-							<p>
-								Excelentes profissionais. Encontrei na Silveira Advocacia a seriedade e o comprometimento que eu
-								precisava. Atendimento diferenciado.
-							</p>
-							<p class="testimonial-source">Google Reviews</p>
-						</article>
-
-						<article class="testimonial-card reveal">
-							<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
-							<h3>Marcos Antônio S.</h3>
-							<p>
-								Recomendo sem hesitar. A equipe me orientou em cada etapa, esclareceu todas as dúvidas e obteve o
-								resultado que eu precisava. Muito obrigado.
-							</p>
-							<p class="testimonial-source">Google Reviews</p>
-						</article>
-
-						<article class="testimonial-card reveal">
-							<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
-							<h3>Ana Paula R.</h3>
-							<p>
-								Precisei de apoio em um momento muito difícil e a Silveira Advocacia foi fundamental. Profissionais
-								éticos, atenciosos e extremamente competentes.
-							</p>
-							<p class="testimonial-source">Google Reviews</p>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section id="faq">
-				<div class="container">
-					<h2 class="section-title reveal">Perguntas Frequentes</h2>
-					<p class="section-subtitle reveal">Tire suas dúvidas com respostas objetivas da nossa equipe.</p>
-
-					<div class="faq-list">
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								O que fazer se fui preso em flagrante?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									Se você ou um familiar foi preso em flagrante, o primeiro e mais importante passo é contatar
-									imediatamente um advogado criminalista. O advogado irá acompanhar a lavratura do auto de prisão em
-									flagrante, verificar a legalidade da prisão e atuar na audiência de custódia, que deve ocorrer em até
-									24 horas, para pleitear a liberdade ou melhores condições de prisão. Não espere: ligue agora para a
-									Silveira Advocacia, (35) 99848-1800.
-								</p>
-							</div>
-						</article>
-
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								Quanto custa um advogado criminal em Campo Belo?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									Os honorários advocatícios variam de acordo com a complexidade do caso, o número de instâncias, a
-									dedicação necessária e o tipo de serviço prestado. Na Silveira Advocacia, oferecemos uma avaliação
-									inicial do caso para entender a situação e apresentar uma proposta justa e transparente. Entre em
-									contato pelo WhatsApp para conversar sem compromisso.
-								</p>
-							</div>
-						</article>
-
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								Como funciona o inventário judicial?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									O inventário é o processo legal de levantamento, avaliação e partilha dos bens deixados por uma
-									pessoa falecida. O prazo para abertura é de 60 dias após o óbito. Pode ser feito de forma
-									extrajudicial (cartório, mais rápido, quando não há menores envolvidos e todos os herdeiros
-									concordam) ou judicial (quando há conflito). A Silveira Advocacia atua com celeridade em ambas as
-									modalidades.
-								</p>
-							</div>
-						</article>
-
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								O escritório atende clientes fora de Campo Belo?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									Sim! Oferecemos atendimento 100% online para clientes em qualquer cidade do Brasil. As reuniões são
-									feitas por videochamada, os documentos são assinados digitalmente e o acompanhamento processual é
-									feito de forma remota. Não importa onde você esteja, podemos te atender.
-								</p>
-							</div>
-						</article>
-
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								O que é usucapião e qual o prazo?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									Usucapião é o direito de adquirir a propriedade de um bem pelo uso prolongado e ininterrupto, desde
-									que preenchidos os requisitos legais. Os prazos variam: usucapião ordinária exige 10 anos de posse;
-									a extraordinária exige 15 anos; a especial urbana ou rural exige 5 anos em condições específicas. A
-									Silveira Advocacia analisa cada caso para identificar o melhor caminho.
-								</p>
-							</div>
-						</article>
-
-						<article class="faq-item reveal">
-							<button class="faq-question tap-target" type="button" aria-expanded="false">
-								Como funciona a renegociação de dívidas bancárias?
-								<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-							</button>
-							<div class="faq-answer">
-								<p>
-									O processo envolve a análise do contrato e do histórico da dívida para identificar irregularidades,
-									como juros abusivos, capitalização indevida e cobranças ilícitas, seguida de negociação direta com o
-									banco ou credores. Em muitos casos, é possível reduzir significativamente o valor total da dívida.
-									Entre em contato para uma análise.
-								</p>
-							</div>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section id="contato" class="contact">
-				<div class="container contact-grid">
-					<div class="reveal">
-						<h2 class="section-title" style="text-align: left; margin-bottom: 12px;">Entre em Contato</h2>
-						<div class="contact-info-list">
-							<div class="contact-info-item">
-								<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-								<p>Rua Dom Pedro I, nº 139, Centro, Campo Belo/MG</p>
-							</div>
-							<div class="contact-info-item">
-								<i class="fa-solid fa-phone" aria-hidden="true"></i>
-								<p>
-									<a
-										href="tel:+5535998481800"
-										class="tap-target"
-										aria-label="Ligar para Silveira Advocacia"
-										>(35) 99848-1800</a
-									>
-								</p>
-							</div>
-							<div class="contact-info-item">
-								<i class="fa-solid fa-envelope" aria-hidden="true"></i>
-								<p>
-									<a
-										href="mailto:contato@silveiraadv.com"
-										class="tap-target"
-										aria-label="Enviar e-mail para Silveira Advocacia"
-										>contato@silveiraadv.com</a
-									>
-								</p>
-							</div>
-							<div class="contact-info-item">
-								<i class="fa-brands fa-instagram" aria-hidden="true"></i>
-								<p>
-									<a
-										href="https://www.instagram.com/silveira.advocaciacb/"
-										class="tap-target"
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label="Abrir Instagram da Silveira Advocacia"
-										>@silveira.advocaciacb</a
-									>
-								</p>
-							</div>
-							<div class="contact-info-item">
-								<i class="fa-regular fa-clock" aria-hidden="true"></i>
-								<p>Segunda a Sexta, 08h às 18h</p>
-							</div>
-							<div class="contact-info-item">
-								<i class="fa-solid fa-globe" aria-hidden="true"></i>
-								<p>Atendimento online em todo o Brasil</p>
-							</div>
-						</div>
-
-						<div class="map-box">
-							<iframe
-								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.5!2d-45.2736!3d-20.8956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDUzJzQ0LjIiUyA0NcKwMTYnMjQuOSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
-								width="100%"
-								height="250"
-								style="border: 0; border-radius: 8px;"
-								allowfullscreen
-								loading="lazy"
-								title="Localização Silveira Advocacia - Campo Belo MG"
-							></iframe>
-							<!-- IMPORTANTE: substitua o src pelo embed real do Google Maps com o endereço correto -->
-						</div>
-					</div>
-
-					<aside class="contact-cta-card reveal">
-						<h3>Precisa de um Advogado Agora?</h3>
-						<p>
-							Nossa equipe está pronta para ouvir você. O primeiro contato é rápido, discreto e sem compromisso.
-						</p>
-						<a
-							href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-							class="btn-primary tap-target"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="Falar no WhatsApp com a Silveira Advocacia"
-						>
-							<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-							Falar no WhatsApp
-						</a>
-						<a class="contact-call tap-target" href="tel:+5535998481800" aria-label="Ligar para o escritório">
-							<i class="fa-solid fa-phone" aria-hidden="true"></i>
-							(35) 99848-1800
-						</a>
-						<p class="contact-cta-foot">
-							Atendimento imediato · Sigilo garantido · Campo Belo/MG e todo o Brasil
-						</p>
-					</aside>
-				</div>
-			</section>
-		</main>
-
-		<footer id="rodape">
-			<div class="container footer-grid">
-				<div class="footer-brand">
-					<span class="footer-logo" aria-hidden="true"></span>
-					<h3>Silveira Advocacia</h3>
-					<p class="sub">Advogados Associados</p>
+			<div class="areas-grid">
+				<a
+					class="area-card reveal"
+					href="/areas/direito-criminal"
+					aria-label="Ir para página de Direito Criminal"
+				>
+					<i class="fa-solid fa-gavel area-icon" aria-hidden="true"></i>
+					<h3>Direito Criminal</h3>
 					<p>
-						Escritório de advocacia em Campo Belo/MG com mais de 16 anos de experiência. Defendemos seus direitos com
-						estratégia e comprometimento.
+						Mais de 500 defesas criminais. Atuamos em flagrante delito, homicídio, tráfico, furto, roubo e muito
+						mais. Defesa técnica e imediata.
 					</p>
-					<a
-						class="social-link tap-target"
-						href="https://www.instagram.com/silveira.advocaciacb/"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="Instagram da Silveira Advocacia"
-					>
-						<i class="fa-brands fa-instagram" aria-hidden="true"></i>
-					</a>
-				</div>
+					<span class="area-link">Saiba mais →</span>
+				</a>
 
-				<div>
-					<h3 class="footer-title">Áreas de Atuação</h3>
-					<ul class="footer-list">
-						<li><a class="tap-target" href="#areas">Direito Criminal</a></li>
-						<li><a class="tap-target" href="#areas">Flagrante Delito</a></li>
-						<li><a class="tap-target" href="#areas">Direito Cível</a></li>
-						<li><a class="tap-target" href="#areas">Direito Bancário</a></li>
-						<li><a class="tap-target" href="#areas">Inventário e Sucessões</a></li>
-						<li><a class="tap-target" href="#areas">Direito de Família</a></li>
-						<li><a class="tap-target" href="#areas">Usucapião</a></li>
-						<li><a class="tap-target" href="#areas">Renegociação de Dívidas</a></li>
-					</ul>
-				</div>
+				<a
+					class="area-card reveal"
+					href="/areas/flagrante-delito"
+					aria-label="Ir para página de Flagrante Delito"
+				>
+					<i class="fa-solid fa-handcuffs area-icon" aria-hidden="true"></i>
+					<h3>Flagrante Delito</h3>
+					<p>
+						Preso em flagrante? Atuamos imediatamente na audiência de custódia para garantir sua liberdade ou a de
+						seu familiar.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
 
-				<div class="footer-contact">
-					<h3 class="footer-title">Contato</h3>
-					<p>Rua Dom Pedro I, nº 139, Centro, Campo Belo/MG</p>
-					<a class="tap-target" href="tel:+5535998481800" aria-label="Telefone Silveira Advocacia"
-						>(35) 99848-1800</a
-					>
-					<a class="tap-target" href="mailto:contato@silveiraadv.com" aria-label="E-mail Silveira Advocacia"
-						>contato@silveiraadv.com</a
-					>
-					<p>Seg-Sex: 08h às 18h</p>
-					<a
-						href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-						class="btn-primary tap-target"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="Falar no WhatsApp"
-					>
-						<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-						WhatsApp
-					</a>
-				</div>
+				<a class="area-card reveal" href="/areas/direito-civil" aria-label="Ir para página de Direito Cível">
+					<i class="fa-solid fa-file-contract area-icon" aria-hidden="true"></i>
+					<h3>Direito Cível</h3>
+					<p>
+						Resolução de conflitos, cobranças, indenizações e obrigações contratuais. Defendemos seus direitos com
+						eficiência.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a
+					class="area-card reveal"
+					href="/areas/direito-bancario"
+					aria-label="Ir para página de Direito Bancário"
+				>
+					<i class="fa-solid fa-landmark area-icon" aria-hidden="true"></i>
+					<h3>Direito Bancário</h3>
+					<p>
+						Renegociação de dívidas, revisão de contrato de financiamento, golpes e fraudes financeiras. Protegemos
+						seu patrimônio.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a
+					class="area-card reveal"
+					href="/areas/inventario-sucessoes"
+					aria-label="Ir para página de Inventário e Sucessões"
+				>
+					<i class="fa-solid fa-scroll area-icon" aria-hidden="true"></i>
+					<h3>Inventário e Sucessões</h3>
+					<p>
+						Inventário judicial e extrajudicial com celeridade, mesmo em casos com conflito entre herdeiros.
+						Atuamos em todo o processo.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a
+					class="area-card reveal"
+					href="/areas/direito-familia"
+					aria-label="Ir para página de Direito de Família"
+				>
+					<i class="fa-solid fa-people-roof area-icon" aria-hidden="true"></i>
+					<h3>Direito de Família</h3>
+					<p>
+						Divórcio, guarda de filhos, pensão alimentícia, reconhecimento de paternidade. Cuidamos com
+						sensibilidade e estratégia.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a class="area-card reveal" href="/areas/usucapiao" aria-label="Ir para página de Usucapião">
+					<i class="fa-solid fa-house area-icon" aria-hidden="true"></i>
+					<h3>Usucapião</h3>
+					<p>
+						Regularização de imóveis por usucapião, todos os tipos e prazos. Transformamos posse em propriedade
+						legalmente garantida.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a
+					class="area-card reveal"
+					href="/areas/direito-imobiliario"
+					aria-label="Ir para página de Direito Imobiliário"
+				>
+					<i class="fa-solid fa-building area-icon" aria-hidden="true"></i>
+					<h3>Direito Imobiliário</h3>
+					<p>
+						Compra e venda, locação, distrato, ações possessórias e regularização fundiária. Segurança jurídica no
+						seu imóvel.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+
+				<a
+					class="area-card reveal"
+					href="/areas/renegociacao-dividas"
+					aria-label="Ir para página de Renegociação de Dívidas"
+				>
+					<i class="fa-solid fa-circle-dollar-to-slot area-icon" aria-hidden="true"></i>
+					<h3>Renegociação de Dívidas</h3>
+					<p>
+						Negociamos diretamente com credores e instituições financeiras para reduzir juros abusivos e parcelar
+						dívidas de forma viável.
+					</p>
+					<span class="area-link">Saiba mais →</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="sobre" class="about">
+		<div class="container about-grid">
+			<div class="reveal">
+				<span class="about-badge">Fundado em 2008</span>
+				<h2>Silveira Advocacia Advogados Associados</h2>
+				<p>
+					Somos um escritório de advocacia com mais de 16 anos de história, fundado pelo Dr. Richard Silveira em
+					2008 na cidade de Campo Belo, Minas Gerais. Ao longo de nossa trajetória, construímos uma sólida
+					reputação baseada em resultados concretos, atendimento humanizado e atuação técnica de excelência.
+				</p>
+				<p>
+					Hoje, o escritório conta com três sócios especialistas, Dr. Richard Silveira, Dr. Raphael Marques e Dr.
+					Diogo Ferreira, cobrindo as principais áreas do direito com profundidade e comprometimento. Atendemos
+					presencialmente em Campo Belo/MG e 100% online em todo o Brasil.
+				</p>
+				<ul class="about-list" aria-label="Diferenciais da Silveira Advocacia">
+					<li>
+						<i class="fa-solid fa-check" aria-hidden="true"></i>
+						<span>Mais de 500 defesas criminais bem-sucedidas</span>
+					</li>
+					<li>
+						<i class="fa-solid fa-check" aria-hidden="true"></i>
+						<span>Equipe multidisciplinar com 3 advogados especialistas</span>
+					</li>
+					<li>
+						<i class="fa-solid fa-check" aria-hidden="true"></i>
+						<span>Atendimento imediato via WhatsApp</span>
+					</li>
+					<li>
+						<i class="fa-solid fa-check" aria-hidden="true"></i>
+						<span>Transparência total na estratégia e nos honorários</span>
+					</li>
+					<li>
+						<i class="fa-solid fa-check" aria-hidden="true"></i>
+						<span>Atendimento presencial e 100% online</span>
+					</li>
+				</ul>
+				<a
+					href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
+					class="btn-primary tap-target"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Falar com um advogado pelo WhatsApp"
+				>
+					<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+					Fale com um Advogado
+				</a>
 			</div>
 
-			<div class="container footer-bottom">
-				<div class="footer-bottom-row">
-					<p>© 2024 Silveira Advocacia Advogados Associados. Todos os direitos reservados.</p>
-					<p>OAB/MG — Este site não faz parte do Google LLC ou Facebook Inc.</p>
-					<div class="footer-bottom-links">
-						<button class="text-button tap-target modal-trigger" type="button" data-modal-target="modal-politica">
-							Política de Privacidade
-						</button>
-						<button class="text-button tap-target modal-trigger" type="button" data-modal-target="modal-aviso">
-							Aviso Legal
-						</button>
+			<aside class="about-highlight reveal" aria-label="Resumo de experiência da equipe">
+				<span class="num">16+</span>
+				<p>Anos de Experiência</p>
+				<div class="about-divider"></div>
+				<span class="num">500+</span>
+				<p>Defesas Criminais</p>
+				<div class="about-divider"></div>
+				<span class="num" style="font-size: clamp(30px, 4vw, 40px);">Campo Belo/MG</span>
+				<p>Rua Dom Pedro I, nº 139, Centro</p>
+			</aside>
+		</div>
+	</section>
+
+	<section id="equipe" class="team">
+		<div class="container">
+			<h2 class="section-title reveal">Nossa Equipe</h2>
+			<p class="section-subtitle reveal">Advogados especialistas comprometidos com a excelência jurídica.</p>
+
+			<div class="team-grid">
+				<article class="team-card reveal">
+					<div class="lawyer-photo">
+						<img
+							src="/images/advgadoRicard.jpeg"
+							alt="Dr. Richard Silveira - Advogado Criminal OAB/MG 114.608"
+							loading="lazy"
+						/>
+					</div>
+					<div class="team-content">
+						<span class="founder-badge">Sócio Fundador</span>
+						<h3>Dr. Richard Silveira</h3>
+						<p class="team-oab">OAB/MG 114.608</p>
+						<div class="chip-group">
+							<span class="chip">Criminal</span>
+							<span class="chip">Cível</span>
+							<span class="chip">Família</span>
+						</div>
+						<p>
+							Fundador do escritório em 2008, o Dr. Richard é referência em direito criminal em Campo Belo/MG. Com
+							ampla atuação também no direito cível e de família, lidera a equipe com mais de 16 anos de dedicação
+							à advocacia.
+						</p>
+						<a class="area-link tap-target" href="/equipe/richard-silveira">Ver perfil completo →</a>
+					</div>
+				</article>
+
+				<article class="team-card reveal">
+					<div class="lawyer-photo">
+						<img
+							src="/images/AdvogadoRaphael.jpeg"
+							alt="Dr. Raphael Marques - Advogado OAB/MG 231.188"
+							loading="lazy"
+						/>
+					</div>
+					<div class="team-content">
+						<h3>Dr. Raphael Marques</h3>
+						<p class="team-oab">OAB/MG 231.188</p>
+						<div class="chip-group">
+							<span class="chip">Cível</span>
+							<span class="chip">Bancário</span>
+							<span class="chip">Imobiliário</span>
+							<span class="chip">Consumidor</span>
+						</div>
+						<p>
+							Especialista em direito cível e das relações de consumo, o Dr. Raphael atua com precisão técnica nas
+							áreas bancária, imobiliária e de sucessões, sempre buscando a solução mais favorável ao cliente.
+						</p>
+						<a class="area-link tap-target" href="/equipe/raphael-marques">Ver perfil completo →</a>
+					</div>
+				</article>
+
+				<article class="team-card reveal">
+					<div class="lawyer-photo">
+						<img
+							src="/images/advogadoDiogo.jpeg"
+							alt="Dr. Diogo Ferreira - Advogado OAB/MG [OAB/MG XXXXX]"
+							loading="lazy"
+						/>
+					</div>
+					<div class="team-content">
+						<h3>Dr. Diogo Ferreira</h3>
+						<p class="team-oab">[OAB/MG XXXXX]</p>
+						<div class="chip-group">
+							<span class="chip">Possessório</span>
+							<span class="chip">Empresarial</span>
+							<span class="chip">Cível</span>
+							<span class="chip">Sucessões</span>
+						</div>
+						<p>
+							Com vasta experiência no direito possessório e empresarial, o Dr. Diogo traz solidez jurídica na
+							resolução de conflitos envolvendo propriedade, sucessões e relações empresariais.
+						</p>
+						<a class="area-link tap-target" href="/equipe/diogo-ferreira">Ver perfil completo →</a>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section id="processo">
+		<div class="container">
+			<h2 class="section-title reveal">Como Iniciar o Processo</h2>
+			<p class="section-subtitle reveal">
+				Atendimento claro, rápido e estratégico do primeiro contato até a solução jurídica.
+			</p>
+
+			<div class="process-grid">
+				<article class="process-step reveal">
+					<span class="process-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
+					<h3>Fale Conosco</h3>
+					<p>
+						Entre em contato pelo WhatsApp ou telefone. Nossa equipe está pronta para receber você com atenção e
+						discrição. Sem burocracia.
+					</p>
+				</article>
+
+				<article class="process-step reveal">
+					<span class="process-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+					<h3>Análise e Orientação</h3>
+					<p>
+						Nossos advogados fazem a análise completa do seu caso, explicam seus direitos e apresentam a estratégia
+						defensiva ideal.
+					</p>
+				</article>
+
+				<article class="process-step reveal">
+					<span class="process-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+					<h3>Solução</h3>
+					<p>
+						Trabalhamos com comprometimento total para garantir a melhor solução ao seu caso, com transparência em
+						cada etapa do processo.
+					</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section id="depoimentos" class="testimonials">
+		<div class="container">
+			<h2 class="section-title reveal">O que dizem nossos clientes</h2>
+			<p class="section-subtitle reveal">⭐⭐⭐⭐⭐ EXCELENTE — 31 avaliações no Google</p>
+
+			<div class="testimonials-grid">
+				<article class="testimonial-card reveal">
+					<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
+					<h3>Lorena Carolina Mendes</h3>
+					<p>
+						Equipe sensacional! Super atenciosos e prontos para resolver qualquer problema. Recomendo a todos que
+						precisam de uma defesa competente e humana.
+					</p>
+					<p class="testimonial-source">Google Reviews</p>
+				</article>
+
+				<article class="testimonial-card reveal">
+					<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
+					<h3>Luciano Melo</h3>
+					<p>
+						Ótimos profissionais. Tive meu caso resolvido com rapidez e competência. Dr. Richard foi impecável em
+						toda a condução do processo.
+					</p>
+					<p class="testimonial-source">Google Reviews</p>
+				</article>
+
+				<article class="testimonial-card reveal">
+					<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
+					<h3>Gabriel Ferreira</h3>
+					<p>
+						Excelentes profissionais. Encontrei na Silveira Advocacia a seriedade e o comprometimento que eu
+						precisava. Atendimento diferenciado.
+					</p>
+					<p class="testimonial-source">Google Reviews</p>
+				</article>
+
+				<article class="testimonial-card reveal">
+					<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
+					<h3>Marcos Antônio S.</h3>
+					<p>
+						Recomendo sem hesitar. A equipe me orientou em cada etapa, esclareceu todas as dúvidas e obteve o
+						resultado que eu precisava. Muito obrigado.
+					</p>
+					<p class="testimonial-source">Google Reviews</p>
+				</article>
+
+				<article class="testimonial-card reveal">
+					<p class="testimonial-stars" aria-label="Avaliação 5 de 5">★★★★★</p>
+					<h3>Ana Paula R.</h3>
+					<p>
+						Precisei de apoio em um momento muito difícil e a Silveira Advocacia foi fundamental. Profissionais
+						éticos, atenciosos e extremamente competentes.
+					</p>
+					<p class="testimonial-source">Google Reviews</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section id="faq">
+		<div class="container">
+			<h2 class="section-title reveal">Perguntas Frequentes</h2>
+			<p class="section-subtitle reveal">Tire suas dúvidas com respostas objetivas da nossa equipe.</p>
+
+			<div class="faq-list">
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						O que fazer se fui preso em flagrante?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							Se você ou um familiar foi preso em flagrante, o primeiro e mais importante passo é contatar
+							imediatamente um advogado criminalista. O advogado irá acompanhar a lavratura do auto de prisão em
+							flagrante, verificar a legalidade da prisão e atuar na audiência de custódia, que deve ocorrer em até
+							24 horas, para pleitear a liberdade ou melhores condições de prisão. Não espere: ligue agora para a
+							Silveira Advocacia, (35) 99848-1800.
+						</p>
+					</div>
+				</article>
+
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						Quanto custa um advogado criminal em Campo Belo?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							Os honorários advocatícios variam de acordo com a complexidade do caso, o número de instâncias, a
+							dedicação necessária e o tipo de serviço prestado. Na Silveira Advocacia, oferecemos uma avaliação
+							inicial do caso para entender a situação e apresentar uma proposta justa e transparente. Entre em
+							contato pelo WhatsApp para conversar sem compromisso.
+						</p>
+					</div>
+				</article>
+
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						Como funciona o inventário judicial?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							O inventário é o processo legal de levantamento, avaliação e partilha dos bens deixados por uma
+							pessoa falecida. O prazo para abertura é de 60 dias após o óbito. Pode ser feito de forma
+							extrajudicial (cartório, mais rápido, quando não há menores envolvidos e todos os herdeiros
+							concordam) ou judicial (quando há conflito). A Silveira Advocacia atua com celeridade em ambas as
+							modalidades.
+						</p>
+					</div>
+				</article>
+
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						O escritório atende clientes fora de Campo Belo?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							Sim! Oferecemos atendimento 100% online para clientes em qualquer cidade do Brasil. As reuniões são
+							feitas por videochamada, os documentos são assinados digitalmente e o acompanhamento processual é
+							feito de forma remota. Não importa onde você esteja, podemos te atender.
+						</p>
+					</div>
+				</article>
+
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						O que é usucapião e qual o prazo?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							Usucapião é o direito de adquirir a propriedade de um bem pelo uso prolongado e ininterrupto, desde
+							que preenchidos os requisitos legais. Os prazos variam: usucapião ordinária exige 10 anos de posse;
+							a extraordinária exige 15 anos; a especial urbana ou rural exige 5 anos em condições específicas. A
+							Silveira Advocacia analisa cada caso para identificar o melhor caminho.
+						</p>
+					</div>
+				</article>
+
+				<article class="faq-item reveal">
+					<button class="faq-question tap-target" type="button" aria-expanded="false">
+						Como funciona a renegociação de dívidas bancárias?
+						<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</button>
+					<div class="faq-answer">
+						<p>
+							O processo envolve a análise do contrato e do histórico da dívida para identificar irregularidades,
+							como juros abusivos, capitalização indevida e cobranças ilícitas, seguida de negociação direta com o
+							banco ou credores. Em muitos casos, é possível reduzir significativamente o valor total da dívida.
+							Entre em contato para uma análise.
+						</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section id="contato" class="contact">
+		<div class="container contact-grid">
+			<div class="reveal">
+				<h2 class="section-title" style="text-align: left; margin-bottom: 12px;">Entre em Contato</h2>
+				<div class="contact-info-list">
+					<div class="contact-info-item">
+						<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+						<p>Rua Dom Pedro I, nº 139, Centro, Campo Belo/MG</p>
+					</div>
+					<div class="contact-info-item">
+						<i class="fa-solid fa-phone" aria-hidden="true"></i>
+						<p>
+							<a
+								href="tel:+5535998481800"
+								class="tap-target"
+								aria-label="Ligar para Silveira Advocacia"
+								>(35) 99848-1800</a
+							>
+						</p>
+					</div>
+					<div class="contact-info-item">
+						<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+						<p>
+							<a
+								href="mailto:contato@silveiraadv.com"
+								class="tap-target"
+								aria-label="Enviar e-mail para Silveira Advocacia"
+								>contato@silveiraadv.com</a
+							>
+						</p>
+					</div>
+					<div class="contact-info-item">
+						<i class="fa-brands fa-instagram" aria-hidden="true"></i>
+						<p>
+							<a
+								href="https://www.instagram.com/silveira.advocaciacb/"
+								class="tap-target"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Abrir Instagram da Silveira Advocacia"
+								>@silveira.advocaciacb</a
+							>
+						</p>
+					</div>
+					<div class="contact-info-item">
+						<i class="fa-regular fa-clock" aria-hidden="true"></i>
+						<p>Segunda a Sexta, 08h às 18h</p>
+					</div>
+					<div class="contact-info-item">
+						<i class="fa-solid fa-globe" aria-hidden="true"></i>
+						<p>Atendimento online em todo o Brasil</p>
 					</div>
 				</div>
-			</div>
-		</footer>
 
-		<a
-			href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
-			class="whatsapp-float"
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label="Falar no WhatsApp com a Silveira Advocacia"
-		>
-			<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-			<span class="whatsapp-tooltip">Falar no WhatsApp</span>
-		</a>
-
-		<div class="modal" id="modal-politica" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-politica">
-			<div class="modal-content">
-				<button class="modal-close tap-target" type="button" aria-label="Fechar modal">✕</button>
-				<h3 id="titulo-politica">Política de Privacidade</h3>
-				<p>
-					A Silveira Advocacia Advogados Associados respeita sua privacidade e protege seus dados pessoais conforme a
-					legislação aplicável.
-				</p>
-				<p>
-					Coletamos apenas os dados necessários para atendimento, como nome, telefone e e-mail, enviados por WhatsApp
-					ou canais de contato.
-				</p>
-				<p>
-					Os dados são utilizados exclusivamente para retorno de contato, análise inicial e prestação de serviços
-					jurídicos.
-				</p>
-				<p>
-					O sigilo profissional é garantido pelo Código de Ética da OAB. Não compartilhamos suas informações com
-					terceiros, salvo por obrigação legal.
-				</p>
+				<div class="map-box">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.5!2d-45.2736!3d-20.8956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDUzJzQ0LjIiUyA0NcKwMTYnMjQuOSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+						width="100%"
+						height="250"
+						style="border: 0; border-radius: 8px;"
+						allowfullscreen
+						loading="lazy"
+						title="Localização Silveira Advocacia - Campo Belo MG"
+					></iframe>
+				</div>
 			</div>
+
+			<aside class="contact-cta-card reveal">
+				<h3>Precisa de um Advogado Agora?</h3>
+				<p>Nossa equipe está pronta para ouvir você. O primeiro contato é rápido, discreto e sem compromisso.</p>
+				<a
+					href="https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado"
+					class="btn-primary tap-target"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Falar no WhatsApp com a Silveira Advocacia"
+				>
+					<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+					Falar no WhatsApp
+				</a>
+				<a class="contact-call tap-target" href="tel:+5535998481800" aria-label="Ligar para o escritório">
+					<i class="fa-solid fa-phone" aria-hidden="true"></i>
+					(35) 99848-1800
+				</a>
+				<p class="contact-cta-foot">Atendimento imediato · Sigilo garantido · Campo Belo/MG e todo o Brasil</p>
+			</aside>
 		</div>
-
-		<div class="modal" id="modal-aviso" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-aviso">
-			<div class="modal-content">
-				<button class="modal-close tap-target" type="button" aria-label="Fechar modal">✕</button>
-				<h3 id="titulo-aviso">Aviso Legal</h3>
-				<p>
-					As informações contidas neste site têm caráter meramente informativo e não constituem aconselhamento
-					jurídico. Para orientação específica ao seu caso, consulte um advogado. A Silveira Advocacia não se
-					responsabiliza pela interpretação ou uso das informações disponibilizadas. Este site não é vinculado ao
-					Google LLC, Facebook Inc. ou qualquer órgão governamental.
-				</p>
-			</div>
-		</div>
-
-		<script>
-			const menuToggle = document.getElementById('menu-toggle');
-			const mobileMenu = document.getElementById('mobile-menu');
-			const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
-
-			function closeMobileMenu() {
-				if (!menuToggle || !mobileMenu) {
-					return;
-				}
-				menuToggle.classList.remove('open');
-				menuToggle.setAttribute('aria-expanded', 'false');
-				menuToggle.setAttribute('aria-label', 'Abrir menu');
-				mobileMenu.classList.remove('open');
-				mobileMenu.setAttribute('aria-hidden', 'true');
-			}
-
-			if (menuToggle && mobileMenu) {
-				menuToggle.addEventListener('click', () => {
-					const open = menuToggle.classList.toggle('open');
-					menuToggle.setAttribute('aria-expanded', String(open));
-					menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-					mobileMenu.classList.toggle('open', open);
-					mobileMenu.setAttribute('aria-hidden', String(!open));
-				});
-
-				mobileMenuLinks.forEach((link) => {
-					link.addEventListener('click', () => closeMobileMenu());
-				});
-			}
-
-			window.addEventListener('scroll', () => {
-				const nav = document.querySelector('nav');
-				if (!nav) {
-					return;
-				}
-				if (window.scrollY > 60) {
-					nav.classList.add('scrolled');
-				} else {
-					nav.classList.remove('scrolled');
-				}
-			});
-
-			const revealObserver = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('visible');
-						}
-					});
-				},
-				{ threshold: 0.15 }
-			);
-
-			document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
-
-			function animateCounter(el, target, duration = 2000) {
-				let start = 0;
-				const step = target / (duration / 16);
-				const timer = setInterval(() => {
-					start += step;
-					if (start >= target) {
-						el.textContent = target + (el.dataset.suffix || '');
-						clearInterval(timer);
-					} else {
-						el.textContent = Math.floor(start) + (el.dataset.suffix || '');
-					}
-				}, 16);
-			}
-
-			const statsSection = document.getElementById('stats');
-			if (statsSection) {
-				const statsObserver = new IntersectionObserver(
-					(entries, observer) => {
-						entries.forEach((entry) => {
-							if (!entry.isIntersecting) {
-								return;
-							}
-							entry.target.querySelectorAll('.stat-value').forEach((counter) => {
-								const target = Number(counter.dataset.target || 0);
-								animateCounter(counter, target, 2000);
-							});
-							observer.unobserve(entry.target);
-						});
-					},
-					{ threshold: 0.35 }
-				);
-
-				statsObserver.observe(statsSection);
-			}
-
-			const faqItems = document.querySelectorAll('.faq-item');
-			faqItems.forEach((item) => {
-				const button = item.querySelector('.faq-question');
-				const answer = item.querySelector('.faq-answer');
-
-				if (!button || !answer) {
-					return;
-				}
-
-				button.addEventListener('click', () => {
-					const isOpen = item.classList.contains('open');
-
-					faqItems.forEach((faqItem) => {
-						faqItem.classList.remove('open');
-						const faqButton = faqItem.querySelector('.faq-question');
-						const faqAnswer = faqItem.querySelector('.faq-answer');
-						if (faqButton) {
-							faqButton.setAttribute('aria-expanded', 'false');
-						}
-						if (faqAnswer) {
-							faqAnswer.style.maxHeight = '0px';
-						}
-					});
-
-					if (!isOpen) {
-						item.classList.add('open');
-						button.setAttribute('aria-expanded', 'true');
-						answer.style.maxHeight = `${answer.scrollHeight}px`;
-					}
-				});
-			});
-
-			const modalTriggers = document.querySelectorAll('.modal-trigger');
-			const modals = document.querySelectorAll('.modal');
-
-			function closeAllModals() {
-				modals.forEach((modal) => {
-					modal.classList.remove('open');
-					modal.setAttribute('aria-hidden', 'true');
-				});
-			}
-
-			modalTriggers.forEach((trigger) => {
-				trigger.addEventListener('click', () => {
-					const targetId = trigger.getAttribute('data-modal-target');
-					const targetModal = targetId ? document.getElementById(targetId) : null;
-					if (!targetModal) {
-						return;
-					}
-					closeAllModals();
-					targetModal.classList.add('open');
-					targetModal.setAttribute('aria-hidden', 'false');
-				});
-			});
-
-			modals.forEach((modal) => {
-				const closeButton = modal.querySelector('.modal-close');
-				if (closeButton) {
-					closeButton.addEventListener('click', closeAllModals);
-				}
-
-				modal.addEventListener('click', (event) => {
-					if (event.target === modal) {
-						closeAllModals();
-					}
-				});
-			});
-
-			document.addEventListener('keydown', (event) => {
-				if (event.key === 'Escape') {
-					closeAllModals();
-					closeMobileMenu();
-				}
-			});
-		</script>
-	</body>
-</html>
+	</section>
+</Layout>

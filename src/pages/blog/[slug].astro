@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BLOG_POSTS } from '../../data/blog';
+
+export function getStaticPaths() {
+	return BLOG_POSTS.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+
+const articleStructuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.title,
+		description: post.description,
+		datePublished: post.date,
+		author: {
+			'@type': 'Organization',
+			name: post.author,
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Silveira Advocacia',
+		},
+		mainEntityOfPage: `https://silveiraadv.com.br/blog/${post.slug}`,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Início', item: 'https://silveiraadv.com.br/' },
+			{ '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://silveiraadv.com.br/blog' },
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: post.title,
+				item: `https://silveiraadv.com.br/blog/${post.slug}`,
+			},
+		],
+	},
+];
+
+const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== post.slug).slice(0, 2);
+
+function formatDate(value: string) {
+	return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(
+		new Date(`${value}T12:00:00`)
+	);
+}
+---
+
+<Layout
+	title={post.seoTitle}
+	description={post.description}
+	canonicalPath={`/blog/${post.slug}`}
+	structuredData={articleStructuredData}
+>
+	<section class="page-hero" aria-labelledby="post-title">
+		<div class="container">
+			<div class="breadcrumb" aria-label="Breadcrumb">
+				<a href="/">Início</a>
+				<span>/</span>
+				<a href="/blog">Blog</a>
+				<span>/</span>
+				<span>{post.category}</span>
+			</div>
+			<p class="page-kicker">{post.category.toUpperCase()}</p>
+			<h1 id="post-title">{post.title}</h1>
+			<p>{post.description}</p>
+			<p style="margin-top: 14px; font-size: 14px; color: rgba(255, 255, 255, 0.8);">
+				Publicado em {formatDate(post.date)} · {post.readTime} de leitura
+			</p>
+		</div>
+	</section>
+
+	<section class="content-page" aria-label="Conteúdo do artigo">
+		<div class="container content-rich">
+			{post.introduction.map((paragraph) => <p>{paragraph}</p>)}
+
+			{post.sections.map((section) => (
+				<>
+					<h2 style="font-size: clamp(28px, 4vw, 40px); margin: 28px 0 14px; color: var(--color-black);">
+						{section.heading}
+					</h2>
+					{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				</>
+			))}
+
+			<h2 style="font-size: clamp(28px, 4vw, 40px); margin: 28px 0 14px; color: var(--color-black);">Conclusão</h2>
+			{post.conclusion.map((paragraph) => <p>{paragraph}</p>)}
+
+			<div
+				style="margin: 28px 0; padding: 18px 20px; border-left: 4px solid var(--color-gold); background: var(--color-off-white);"
+			>
+				<p style="margin: 0; font-weight: 600; color: var(--color-black);">
+					Precisa de um advogado em Campo Belo MG? Fale agora com a Silveira Advocacia pelo WhatsApp: (35) 99848-1800
+				</p>
+			</div>
+
+			<a class="back-home-link tap-target" href="/blog">
+				<i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+				Voltar para o blog
+			</a>
+		</div>
+	</section>
+
+	<section class="contact" aria-label="Artigos relacionados">
+		<div class="container">
+			<h2 class="section-title reveal">Artigos Relacionados</h2>
+			<div class="blog-grid">
+				{relatedPosts.map((item) => (
+					<article class="area-card blog-card reveal">
+						<span class="post-meta">
+							<span>{item.category}</span>
+							<span>{item.readTime}</span>
+						</span>
+						<h3 style="font-size: clamp(24px, 3vw, 30px); margin-bottom: 10px;">{item.title}</h3>
+						<p>{item.description}</p>
+						<a class="area-link tap-target" href={`/blog/${item.slug}`}>Ler artigo →</a>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>

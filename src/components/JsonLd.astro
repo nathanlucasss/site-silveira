@@ -1,0 +1,20 @@
+---
+type JsonLdSchema = Record<string, unknown>;
+
+interface Props {
+	schemas?: JsonLdSchema | JsonLdSchema[];
+}
+
+const { schemas = [] } = Astro.props;
+
+const normalizedSchemas = Array.isArray(schemas) ? schemas : [schemas];
+const validSchemas = normalizedSchemas.filter(
+	(schema): schema is JsonLdSchema => !!schema && Object.keys(schema).length > 0
+);
+---
+
+{
+	validSchemas.map((schema) => (
+		<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+	))
+}

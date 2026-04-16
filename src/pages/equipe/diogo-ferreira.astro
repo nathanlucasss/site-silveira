@@ -1,0 +1,26 @@
+---
+import TeamProfilePage from '../../components/TeamProfilePage.astro';
+
+const profile = {
+	slug: 'diogo-ferreira',
+	name: 'Dr. Diogo Ferreira',
+	oab: '[OAB/MG XXXXX]',
+	role: 'Advogado',
+	title: 'Dr. Diogo em Campo Belo MG | Silveira Advocacia',
+	description:
+		'Dr. Diogo Ferreira, advogado em Campo Belo MG, [OAB/MG XXXXX], com atuação em direito possessório, empresarial, cível e sucessões, com atendimento estratégico.',
+	image: '/images/advogadoDiogo.jpeg',
+	imageAlt: 'Dr. Diogo Ferreira - Advogado',
+	kicker: 'ATUAÇÃO EM DIREITO POSSESSÓRIO E EMPRESARIAL',
+	intro:
+		'O Dr. Diogo Ferreira atua com foco em conflitos patrimoniais, questões possessórias e demandas empresariais, com abordagem técnica orientada à solução eficiente de litígios.',
+	paragraphs: [
+		'Na área possessória, o Dr. Diogo trabalha em casos envolvendo posse, propriedade e proteção de direitos reais, com atuação estratégica para preservar patrimônio e reduzir riscos processuais. Sua experiência inclui análise documental, construção de prova e condução de medidas judiciais necessárias para defesa dos interesses do cliente.',
+		'No campo empresarial e cível, atua em conflitos contratuais, responsabilidades e disputas que exigem visão integrada entre segurança jurídica e viabilidade prática. Também participa de casos de sucessões, contribuindo para organização patrimonial e resolução de controvérsias entre interessados.',
+		'Com atendimento próximo e comunicação clara, o Dr. Diogo orienta clientes sobre caminhos jurídicos possíveis e impactos de cada decisão. O suporte presencial em Campo Belo/MG e online permite maior agilidade no acompanhamento dos casos e no planejamento de estratégias personalizadas.',
+	],
+	specialties: ['Direito Possessório', 'Direito Empresarial', 'Direito Cível', 'Sucessões'],
+};
+---
+
+<TeamProfilePage profile={profile} />

@@ -1,0 +1,26 @@
+---
+import TeamProfilePage from '../../components/TeamProfilePage.astro';
+
+const profile = {
+	slug: 'richard-silveira',
+	name: 'Dr. Richard Silveira',
+	oab: 'OAB/MG 114.608',
+	role: 'Advogado Criminalista · Sócio Fundador',
+	title: 'Dr. Richard em Campo Belo MG | Silveira Advocacia',
+	description:
+		'Dr. Richard Silveira, advogado criminalista em Campo Belo MG, OAB/MG 114.608, com mais de 16 anos de atuação em defesa penal estratégica e atendimento imediato.',
+	image: '/images/advgadoRicard.jpeg',
+	imageAlt: 'Dr. Richard Silveira - Advogado Criminalista',
+	kicker: 'SÓCIO FUNDADOR',
+	intro:
+		'Fundador da Silveira Advocacia em 2008, o Dr. Richard Silveira construiu trajetória marcada por atuação técnica em direito criminal, com foco em estratégia defensiva e atendimento humanizado.',
+	paragraphs: [
+		'Com mais de 16 anos de dedicação à advocacia, o Dr. Richard atua em casos complexos na área criminal, incluindo flagrante delito, inquérito policial, audiência de custódia e defesa em ações penais. Sua atuação combina análise jurídica rigorosa com acompanhamento próximo do cliente e da família, especialmente em situações de urgência.',
+		'Além da esfera criminal, também possui sólida experiência em demandas cíveis e de família, contribuindo para visão multidisciplinar na condução dos casos. Essa integração entre áreas permite estratégias mais completas e alinhadas à realidade de cada cliente.',
+		'À frente da equipe da Silveira Advocacia, o Dr. Richard mantém compromisso com ética, transparência e comunicação objetiva. O atendimento em Campo Belo/MG e online possibilita suporte ágil para clientes de diferentes cidades, com foco em resultados e segurança jurídica.',
+	],
+	specialties: ['Direito Criminal', 'Direito Cível', 'Direito de Família'],
+};
+---
+
+<TeamProfilePage profile={profile} />

@@ -1,23 +1,1993 @@
+---
+import JsonLd from '../components/JsonLd.astro';
+
+interface NavLink {
+	label: string;
+	href: string;
+}
+
+interface FooterAreaLink {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	title: string;
+	description: string;
+	keywords?: string;
+	canonicalPath?: string;
+	ogType?: 'website' | 'article';
+	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const whatsappHref =
+	'https://wa.me/5535998481800?text=Ol%C3%A1!%20Vi%20o%20site%20e%20preciso%20de%20um%20advogado';
+
+const siteUrl = 'https://silveiraadv.com.br';
+
+const {
+	title,
+	description,
+	keywords =
+		'advogado em campo belo mg, advogado criminal campo belo, advogado cível mg, inventário em campo belo, advogado bancário mg, usucapião mg, advogado de família campo belo',
+	canonicalPath = '/',
+	ogType = 'website',
+	structuredData = [],
+} = Astro.props;
+
+const normalizedCanonicalPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
+const canonicalUrl = `${siteUrl}${normalizedCanonicalPath}`;
+
+const currentPath =
+	Astro.url.pathname.length > 1 && Astro.url.pathname.endsWith('/')
+		? Astro.url.pathname.slice(0, -1)
+		: Astro.url.pathname;
+
+const navLinks: NavLink[] = [
+	{ label: 'Início', href: '/' },
+	{ label: 'Direito Criminal', href: '/areas/direito-criminal' },
+	{ label: 'Direito Cível', href: '/areas/direito-civil' },
+	{ label: 'Blog', href: '/blog' },
+	{ label: 'Equipe', href: '/equipe' },
+];
+
+const mobileLinks: NavLink[] = [
+	{ label: 'Início', href: '/' },
+	{ label: 'Direito Criminal', href: '/areas/direito-criminal' },
+	{ label: 'Flagrante Delito', href: '/areas/flagrante-delito' },
+	{ label: 'Direito Cível', href: '/areas/direito-civil' },
+	{ label: 'Direito Bancário', href: '/areas/direito-bancario' },
+	{ label: 'Inventário e Sucessões', href: '/areas/inventario-sucessoes' },
+	{ label: 'Direito de Família', href: '/areas/direito-familia' },
+	{ label: 'Usucapião', href: '/areas/usucapiao' },
+	{ label: 'Direito Imobiliário', href: '/areas/direito-imobiliario' },
+	{ label: 'Renegociação de Dívidas', href: '/areas/renegociacao-dividas' },
+	{ label: 'Blog', href: '/blog' },
+	{ label: 'Equipe', href: '/equipe' },
+];
+
+const footerAreaLinks: FooterAreaLink[] = [
+	{ label: 'Direito Criminal', href: '/areas/direito-criminal' },
+	{ label: 'Flagrante Delito', href: '/areas/flagrante-delito' },
+	{ label: 'Direito Cível', href: '/areas/direito-civil' },
+	{ label: 'Direito Bancário', href: '/areas/direito-bancario' },
+	{ label: 'Inventário e Sucessões', href: '/areas/inventario-sucessoes' },
+	{ label: 'Direito de Família', href: '/areas/direito-familia' },
+	{ label: 'Usucapião', href: '/areas/usucapiao' },
+	{ label: 'Direito Imobiliário', href: '/areas/direito-imobiliario' },
+	{ label: 'Renegociação de Dívidas', href: '/areas/renegociacao-dividas' },
+];
+
+const schemaItems = Array.isArray(structuredData)
+	? structuredData
+	: structuredData
+		? [structuredData]
+		: [];
+
+const isActive = (href: string) => {
+	const normalizedHref = href.length > 1 && href.endsWith('/') ? href.slice(0, -1) : href;
+	return currentPath === normalizedHref;
+};
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonicalUrl} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="Silveira Advocacia" />
+		<meta property="og:locale" content="pt_BR" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+
+		<JsonLd schemas={schemaItems} />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		/>
+
+		<style is:global>
+			:root {
+				--color-white: #ffffff;
+				--color-off-white: #f8f9fa;
+				--color-gray-light: #e9ecef;
+				--color-gray-mid: #6c757d;
+				--color-gray-dark: #343a40;
+				--color-black: #111111;
+				--color-gold: #b8963e;
+				--color-gold-light: #d4af55;
+				--color-gold-dark: #8b6914;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: 'Inter', sans-serif;
+				font-size: 16px;
+				color: var(--color-gray-dark);
+				line-height: 1.7;
+				background: var(--color-white);
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: 'Playfair Display', serif;
+				line-height: 1.3;
+			}
+
+			a {
+				text-decoration: none;
+				color: inherit;
+				transition: color 0.2s ease;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			section {
+				padding: 80px 0;
+				scroll-margin-top: 92px;
+			}
+
+			@media (max-width: 768px) {
+				section {
+					padding: 60px 0;
+				}
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			.tap-target {
+				min-height: 44px;
+				min-width: 44px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.skip-link {
+				position: fixed;
+				left: 16px;
+				top: -100px;
+				z-index: 2000;
+				background: var(--color-black);
+				color: var(--color-white);
+				padding: 10px 16px;
+				border-radius: 4px;
+			}
+
+			.skip-link:focus {
+				top: 16px;
+			}
+
+			.section-title {
+				font-size: clamp(28px, 4vw, 42px);
+				color: var(--color-black);
+				text-align: center;
+				margin-bottom: 16px;
+			}
+
+			.section-title::after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 2px;
+				background: var(--color-gold);
+				margin: 12px auto 0;
+				transition: width 0.8s ease;
+			}
+
+			.section-title.visible::after {
+				width: 60px;
+			}
+
+			.section-subtitle {
+				font-size: 18px;
+				color: var(--color-gray-mid);
+				text-align: center;
+				max-width: 600px;
+				margin: 0 auto 60px;
+			}
+
+			.btn-primary {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				background: var(--color-gold);
+				color: var(--color-white);
+				padding: 14px 28px;
+				border-radius: 4px;
+				font-family: 'Inter', sans-serif;
+				font-weight: 600;
+				font-size: 15px;
+				transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+				cursor: pointer;
+				border: none;
+			}
+
+			.btn-primary:hover {
+				background: var(--color-gold-light);
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(184, 150, 62, 0.35);
+			}
+
+			.btn-secondary {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				background: transparent;
+				color: var(--color-white);
+				padding: 14px 28px;
+				border-radius: 4px;
+				border: 2px solid rgba(255, 255, 255, 0.7);
+				font-weight: 600;
+				font-size: 15px;
+				transition: all 0.2s ease;
+			}
+
+			.btn-secondary:hover {
+				background: rgba(255, 255, 255, 0.1);
+				border-color: var(--color-white);
+			}
+
+			.gold-line {
+				width: 50px;
+				height: 2px;
+				background: var(--color-gold);
+				margin: 0 auto 20px;
+			}
+
+			nav {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 1000;
+				transition: background 0.3s ease, box-shadow 0.3s ease;
+				background: rgba(255, 255, 255, 0.82);
+				backdrop-filter: blur(10px);
+			}
+
+			nav.scrolled {
+				background: #fff;
+				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			.nav-inner {
+				min-height: 80px;
+				display: grid;
+				align-items: center;
+				grid-template-columns: 1fr auto;
+				gap: 16px;
+			}
+
+			.brand {
+				display: inline-flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 10px;
+			}
+
+			.brand-logo {
+				width: 40px;
+				height: 44px;
+				flex-shrink: 0;
+				background: var(--color-gold);
+				-webkit-mask: url('/images/logo-silveira.png') center / contain no-repeat;
+				mask: url('/images/logo-silveira.png') center / contain no-repeat;
+			}
+
+			.brand-text {
+				display: inline-flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			.brand-main {
+				font-family: 'Playfair Display', serif;
+				color: var(--color-gold-dark);
+				font-size: clamp(20px, 2.5vw, 30px);
+				font-weight: 600;
+				letter-spacing: 0.5px;
+				line-height: 1.1;
+			}
+
+			.brand-sub {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				color: var(--color-gray-mid);
+				font-size: 12px;
+				letter-spacing: 1.4px;
+				text-transform: uppercase;
+			}
+
+			.brand-sub::before {
+				content: '';
+				width: 1px;
+				height: 14px;
+				background: var(--color-gold);
+			}
+
+			.nav-center,
+			.nav-cta {
+				display: none;
+			}
+
+			.nav-links {
+				list-style: none;
+				display: flex;
+				align-items: center;
+				gap: 24px;
+			}
+
+			.nav-link {
+				position: relative;
+				font-weight: 500;
+				color: var(--color-gray-dark);
+				padding: 10px 0;
+			}
+
+			.nav-link::after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: var(--color-gold);
+				transition: width 0.3s ease;
+			}
+
+			.nav-link:hover::after,
+			.nav-link.active::after {
+				width: 100%;
+			}
+
+			.menu-toggle {
+				display: inline-flex;
+				width: 44px;
+				height: 44px;
+				border: 1px solid var(--color-gray-light);
+				border-radius: 8px;
+				background: var(--color-white);
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				gap: 5px;
+			}
+
+			.menu-toggle span {
+				width: 20px;
+				height: 2px;
+				border-radius: 2px;
+				background: var(--color-black);
+				transition: transform 0.3s ease, opacity 0.3s ease;
+			}
+
+			.menu-toggle.open span:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+
+			.menu-toggle.open span:nth-child(2) {
+				opacity: 0;
+			}
+
+			.menu-toggle.open span:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+
+			.mobile-menu {
+				max-height: 0;
+				overflow: hidden;
+				background: var(--color-white);
+				border-top: 1px solid transparent;
+				transition: max-height 0.35s ease, border-color 0.35s ease;
+			}
+
+			.mobile-menu.open {
+				max-height: 700px;
+				border-top-color: var(--color-gray-light);
+			}
+
+			.mobile-menu ul {
+				list-style: none;
+				padding: 16px 24px;
+			}
+
+			.mobile-menu a {
+				display: block;
+				font-weight: 500;
+				color: var(--color-gray-dark);
+				padding: 10px 0;
+			}
+
+			.mobile-menu .btn-primary {
+				margin-top: 8px;
+				width: 100%;
+			}
+
+			.hero {
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				position: relative;
+				background-color: #111111;
+				background-image: url('/images/3AdvogadosJuntos.jpeg');
+				background-size: cover;
+				background-position: center 18%;
+				background-repeat: no-repeat;
+				color: var(--color-white);
+				padding: 120px 0 80px;
+			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: rgba(10, 10, 10, 0.62);
+			}
+
+			.hero .container {
+				position: relative;
+				z-index: 1;
+			}
+
+			.hero-content {
+				max-width: 900px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			.hero-visual-block,
+			.hero-message-block {
+				width: 100%;
+			}
+
+			.hero-content > * {
+				opacity: 0;
+				animation: heroFadeIn 1s ease forwards;
+			}
+
+			.hero-content > *:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+
+			.hero-content > *:nth-child(3) {
+				animation-delay: 0.4s;
+			}
+
+			.hero-content > *:nth-child(4) {
+				animation-delay: 0.6s;
+			}
+
+			.hero-content > *:nth-child(5) {
+				animation-delay: 0.8s;
+			}
+
+			.hero-content > *:nth-child(6) {
+				animation-delay: 1s;
+			}
+
+			.hero-kicker {
+				font-size: clamp(13px, 2vw, 15px);
+				letter-spacing: 4px;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.95);
+			}
+
+			.hero h1 {
+				font-size: clamp(36px, 7vw, 58px);
+				margin: 16px auto;
+				max-width: 780px;
+			}
+
+			.hero p {
+				font-size: clamp(16px, 2.2vw, 19px);
+				max-width: 720px;
+				margin: 0 auto;
+				color: rgba(255, 255, 255, 0.92);
+			}
+
+			.hero-actions {
+				margin-top: 34px;
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 12px;
+			}
+
+			.hero-credentials {
+				margin-top: 24px;
+				list-style: none;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 16px;
+				font-size: 15px;
+			}
+
+			.hero-credentials li {
+				color: rgba(255, 255, 255, 0.92);
+			}
+
+			.hero-credentials i {
+				color: var(--color-gold-light);
+				margin-right: 6px;
+			}
+
+			.scroll-arrow {
+				margin-top: 34px;
+				display: inline-flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 6px;
+				color: var(--color-gold);
+				animation: bounce 1.5s ease infinite;
+			}
+
+			.page-hero {
+				background: linear-gradient(145deg, #111111 0%, #1d1d1d 55%, #2a2a2a 100%);
+				padding-top: 150px;
+				padding-bottom: 60px;
+				color: var(--color-white);
+			}
+
+			.breadcrumb {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 14px;
+				margin-bottom: 18px;
+				color: rgba(255, 255, 255, 0.84);
+			}
+
+			.breadcrumb a:hover {
+				color: var(--color-gold-light);
+			}
+
+			.page-kicker {
+				font-size: 13px;
+				letter-spacing: 3px;
+				text-transform: uppercase;
+				color: var(--color-gold-light);
+				margin-bottom: 10px;
+			}
+
+			.page-hero h1 {
+				font-size: clamp(34px, 6vw, 52px);
+				margin-bottom: 14px;
+			}
+
+			.page-hero p {
+				font-size: 18px;
+				max-width: 780px;
+				color: rgba(255, 255, 255, 0.88);
+			}
+
+			.page-actions {
+				margin-top: 28px;
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+			}
+
+			.content-page {
+				background: var(--color-white);
+			}
+
+			.content-rich {
+				max-width: 980px;
+				margin: 0 auto;
+			}
+
+			.content-rich p {
+				margin-bottom: 16px;
+				font-size: 17px;
+				color: var(--color-gray-dark);
+			}
+
+			.back-home-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-weight: 600;
+				color: var(--color-gold-dark);
+				margin-top: 10px;
+			}
+
+			.back-home-link:hover {
+				color: var(--color-gold-light);
+			}
+
+			.stats {
+				background: var(--color-white);
+				padding-top: 34px;
+			}
+
+			.stats-grid {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 0;
+				border: 1px solid var(--color-gray-light);
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+			}
+
+			.stat-item {
+				text-align: center;
+				padding: 34px 20px;
+				background: var(--color-white);
+			}
+
+			.stat-item + .stat-item {
+				border-left: 1px solid rgba(184, 150, 62, 0.35);
+			}
+
+			.stat-value {
+				display: block;
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(34px, 5vw, 48px);
+				color: var(--color-gold);
+				line-height: 1;
+				margin-bottom: 8px;
+			}
+
+			.stat-label {
+				color: var(--color-gray-dark);
+				font-weight: 500;
+			}
+
+			.areas-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 22px;
+			}
+
+			.area-card {
+				background: var(--color-white);
+				border: 1px solid var(--color-gray-light);
+				border-top: 3px solid transparent;
+				border-radius: 8px;
+				padding: 28px;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+				transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+				display: block;
+			}
+
+			.area-card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+				border-top-color: var(--color-gold);
+			}
+
+			.area-icon {
+				color: var(--color-gold);
+				font-size: 30px;
+				margin-bottom: 14px;
+			}
+
+			.area-card h3 {
+				font-size: 27px;
+				margin-bottom: 10px;
+			}
+
+			.area-card p {
+				color: var(--color-gray-mid);
+				margin-bottom: 16px;
+			}
+
+			.area-link {
+				font-weight: 600;
+				color: var(--color-gold-dark);
+			}
+
+			.blog-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 22px;
+			}
+
+			.blog-card {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.post-meta {
+				display: inline-flex;
+				gap: 10px;
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 0.4px;
+				text-transform: uppercase;
+				color: var(--color-gold-dark);
+				margin-bottom: 10px;
+			}
+
+			.about {
+				background: var(--color-white);
+			}
+
+			.about-grid {
+				display: grid;
+				grid-template-columns: 1.2fr 0.8fr;
+				gap: 28px;
+				align-items: center;
+			}
+
+			.about-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: rgba(184, 150, 62, 0.12);
+				color: var(--color-gold-dark);
+				border: 1px solid rgba(184, 150, 62, 0.3);
+				border-radius: 999px;
+				padding: 7px 14px;
+				margin-bottom: 14px;
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			.about h2 {
+				font-size: clamp(30px, 4vw, 44px);
+				margin-bottom: 16px;
+			}
+
+			.about p {
+				margin-bottom: 16px;
+				color: var(--color-gray-dark);
+			}
+
+			.about-list {
+				list-style: none;
+				margin: 18px 0 26px;
+			}
+
+			.about-list li {
+				display: flex;
+				gap: 8px;
+				margin-bottom: 8px;
+			}
+
+			.about-list i {
+				color: var(--color-gold);
+				margin-top: 7px;
+			}
+
+			.about-highlight {
+				background: var(--color-off-white);
+				border: 1px solid rgba(184, 150, 62, 0.5);
+				border-radius: 8px;
+				padding: 32px;
+				text-align: center;
+			}
+
+			.about-highlight .num {
+				display: block;
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(42px, 6vw, 56px);
+				color: var(--color-gold);
+				line-height: 1;
+			}
+
+			.about-divider {
+				height: 1px;
+				margin: 20px 0;
+				background: rgba(184, 150, 62, 0.35);
+			}
+
+			.team {
+				background: var(--color-off-white);
+			}
+
+			.team-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 22px;
+				align-items: start;
+			}
+
+			.team-card {
+				background: var(--color-white);
+				border-radius: 8px;
+				border: 1px solid var(--color-gray-light);
+				overflow: hidden;
+				max-width: 420px;
+				width: 100%;
+				margin: 0 auto;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.team-card:hover {
+				transform: scale(1.02);
+				box-shadow: 0 14px 34px rgba(0, 0, 0, 0.13);
+			}
+
+			.lawyer-photo {
+				height: 360px;
+				background: #f1f2f3;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				position: relative;
+				z-index: 1;
+			}
+
+			.lawyer-photo img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				object-position: center top;
+				transform: scale(1.08);
+				transform-origin: center top;
+			}
+
+			.team-content {
+				padding: 24px;
+				position: relative;
+				z-index: 2;
+				background: var(--color-white);
+			}
+
+			.founder-badge {
+				display: inline-block;
+				background: rgba(184, 150, 62, 0.16);
+				color: var(--color-gold-dark);
+				border: 1px solid rgba(184, 150, 62, 0.35);
+				font-size: 12px;
+				letter-spacing: 0.6px;
+				border-radius: 999px;
+				text-transform: uppercase;
+				font-weight: 600;
+				padding: 6px 12px;
+				margin-bottom: 10px;
+			}
+
+			.team-content h3 {
+				font-size: 30px;
+				margin-bottom: 4px;
+			}
+
+			.team-oab {
+				color: var(--color-gray-mid);
+				font-size: 15px;
+				margin-bottom: 12px;
+			}
+
+			.chip-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-bottom: 14px;
+			}
+
+			.chip {
+				background: var(--color-off-white);
+				border: 1px solid var(--color-gray-light);
+				border-radius: 999px;
+				padding: 5px 10px;
+				font-size: 12px;
+				font-weight: 600;
+				color: var(--color-gray-dark);
+			}
+
+			.process-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 20px;
+				position: relative;
+			}
+
+			.process-grid::before {
+				content: '';
+				position: absolute;
+				top: 44px;
+				left: 10%;
+				width: 80%;
+				height: 2px;
+				background: rgba(184, 150, 62, 0.5);
+			}
+
+			.process-step {
+				position: relative;
+				z-index: 1;
+				background: var(--color-white);
+				border-radius: 8px;
+				border: 1px solid var(--color-gray-light);
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+				padding: 28px;
+			}
+
+			.process-icon {
+				width: 56px;
+				height: 56px;
+				margin-bottom: 14px;
+				border-radius: 50%;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				background: rgba(184, 150, 62, 0.15);
+				color: var(--color-gold-dark);
+				font-size: 24px;
+			}
+
+			.process-step h3 {
+				font-size: 29px;
+				margin-bottom: 8px;
+			}
+
+			.testimonials {
+				background: var(--color-off-white);
+			}
+
+			.testimonials-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 20px;
+			}
+
+			.testimonial-card {
+				background: var(--color-white);
+				border-radius: 8px;
+				border-left: 3px solid var(--color-gold);
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+				padding: 24px;
+			}
+
+			.testimonial-stars {
+				color: var(--color-gold);
+				letter-spacing: 2px;
+				margin-bottom: 10px;
+			}
+
+			.testimonial-card h3 {
+				font-size: 26px;
+				margin-bottom: 8px;
+			}
+
+			.testimonial-source {
+				margin-top: 10px;
+				font-size: 14px;
+				color: var(--color-gray-mid);
+			}
+
+			.faq-list {
+				max-width: 900px;
+				margin: 0 auto;
+			}
+
+			.faq-item {
+				border: 1px solid var(--color-gray-light);
+				border-radius: 8px;
+				overflow: hidden;
+				margin-bottom: 12px;
+				background: var(--color-white);
+			}
+
+			.faq-question {
+				width: 100%;
+				text-align: left;
+				border: 0;
+				background: var(--color-white);
+				color: var(--color-black);
+				padding: 16px 20px;
+				font-size: 17px;
+				font-weight: 600;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				cursor: pointer;
+			}
+
+			.faq-question i {
+				color: var(--color-gold);
+				transition: transform 0.3s ease;
+			}
+
+			.faq-item.open .faq-question i {
+				transform: rotate(180deg);
+			}
+
+			.faq-answer {
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.35s ease;
+			}
+
+			.faq-answer p {
+				padding: 0 20px 20px;
+				color: var(--color-gray-dark);
+			}
+
+			.contact {
+				background: var(--color-off-white);
+			}
+
+			.contact-grid {
+				display: grid;
+				grid-template-columns: 1.1fr 0.9fr;
+				gap: 24px;
+			}
+
+			.contact-info-list {
+				display: grid;
+				gap: 12px;
+				margin-bottom: 20px;
+			}
+
+			.contact-info-item {
+				display: flex;
+				gap: 12px;
+				align-items: flex-start;
+				background: var(--color-white);
+				border: 1px solid var(--color-gray-light);
+				border-radius: 8px;
+				padding: 12px 14px;
+			}
+
+			.contact-info-item i {
+				color: var(--color-gold);
+				margin-top: 6px;
+			}
+
+			.map-box {
+				border: 1px solid var(--color-gray-light);
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+			}
+
+			.contact-cta-card {
+				background: var(--color-black);
+				border-radius: 8px;
+				color: var(--color-white);
+				padding: 34px;
+				border: 1px solid rgba(184, 150, 62, 0.4);
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+			}
+
+			.contact-cta-card h3 {
+				font-size: clamp(30px, 4vw, 38px);
+				margin-bottom: 14px;
+			}
+
+			.contact-cta-card p {
+				color: rgba(255, 255, 255, 0.88);
+			}
+
+			.contact-cta-card .btn-primary {
+				margin: 22px 0 16px;
+				width: 100%;
+			}
+
+			.contact-call {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				color: var(--color-white);
+			}
+
+			.contact-cta-foot {
+				margin-top: 16px;
+				padding-top: 16px;
+				border-top: 1px solid rgba(184, 150, 62, 0.3);
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 14px;
+			}
+
+			footer {
+				background: var(--color-black);
+				color: rgba(255, 255, 255, 0.82);
+				padding-top: 60px;
+			}
+
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 1.1fr 1fr 1fr;
+				gap: 24px;
+			}
+
+			.footer-brand h3 {
+				color: var(--color-white);
+				font-size: 30px;
+			}
+
+			.footer-logo {
+				display: block;
+				width: 54px;
+				height: 62px;
+				background: var(--color-gold);
+				margin-bottom: 12px;
+				-webkit-mask: url('/images/logo-silveira.png') center / contain no-repeat;
+				mask: url('/images/logo-silveira.png') center / contain no-repeat;
+			}
+
+			.footer-brand .sub {
+				color: var(--color-gold);
+				margin-bottom: 12px;
+			}
+
+			.footer-title {
+				color: var(--color-white);
+				font-size: 26px;
+				margin-bottom: 12px;
+			}
+
+			.footer-list {
+				list-style: none;
+			}
+
+			.footer-list li {
+				margin-bottom: 8px;
+			}
+
+			.footer-list a,
+			.footer-contact a,
+			.contact-info-item a {
+				display: inline-flex;
+				align-items: center;
+				min-height: 44px;
+			}
+
+			.footer-list a:hover,
+			.footer-contact a:hover,
+			.social-link:hover {
+				color: var(--color-gold-light);
+			}
+
+			.social-link {
+				margin-top: 14px;
+				display: inline-flex;
+				width: 44px;
+				height: 44px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 50%;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.footer-contact p,
+			.footer-contact a {
+				margin-bottom: 8px;
+				display: block;
+			}
+
+			.footer-bottom {
+				margin-top: 28px;
+				border-top: 1px solid rgba(255, 255, 255, 0.15);
+				padding: 18px 0;
+				font-size: 14px;
+			}
+
+			.footer-bottom-row {
+				display: flex;
+				justify-content: space-between;
+				gap: 12px;
+				flex-wrap: wrap;
+			}
+
+			.footer-bottom-links {
+				display: inline-flex;
+				gap: 12px;
+			}
+
+			.text-button {
+				border: 0;
+				background: transparent;
+				color: rgba(255, 255, 255, 0.85);
+				cursor: pointer;
+				font-size: 14px;
+			}
+
+			.text-button:hover {
+				color: var(--color-gold-light);
+			}
+
+			.modal {
+				position: fixed;
+				inset: 0;
+				z-index: 1200;
+				background: rgba(0, 0, 0, 0.62);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 20px;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.2s ease;
+			}
+
+			.modal.open {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			.modal-content {
+				width: min(760px, 100%);
+				max-height: 85vh;
+				overflow: auto;
+				border-radius: 8px;
+				background: var(--color-white);
+				padding: 24px;
+				box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+				position: relative;
+			}
+
+			.modal-content h3 {
+				font-size: 30px;
+				margin-bottom: 10px;
+			}
+
+			.modal-content p {
+				margin-bottom: 10px;
+			}
+
+			.modal-close {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 44px;
+				height: 44px;
+				border: 0;
+				border-radius: 50%;
+				background: var(--color-off-white);
+				cursor: pointer;
+			}
+
+			.reveal {
+				opacity: 0;
+				transform: translateY(40px);
+				transition: opacity 0.7s ease, transform 0.7s ease;
+			}
+
+			.reveal.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			.reveal:nth-child(1) {
+				transition-delay: 0s;
+			}
+
+			.reveal:nth-child(2) {
+				transition-delay: 0.1s;
+			}
+
+			.reveal:nth-child(3) {
+				transition-delay: 0.2s;
+			}
+
+			.reveal:nth-child(4) {
+				transition-delay: 0.3s;
+			}
+
+			@keyframes pulse {
+				0%,
+				100% {
+					box-shadow: 0 0 0 0 rgba(184, 150, 62, 0.5);
+				}
+
+				50% {
+					box-shadow: 0 0 0 12px rgba(184, 150, 62, 0);
+				}
+			}
+
+			@keyframes heroFadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes bounce {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+
+				50% {
+					transform: translateY(8px);
+				}
+			}
+
+			.whatsapp-float {
+				position: fixed;
+				bottom: 28px;
+				right: 28px;
+				z-index: 9999;
+				width: 60px;
+				height: 60px;
+				background: #25d366;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 28px;
+				color: var(--color-white);
+				box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+				animation: pulse 2.5s infinite;
+				transition: transform 0.2s ease;
+			}
+
+			.whatsapp-float:hover {
+				transform: scale(1.1);
+			}
+
+			.whatsapp-tooltip {
+				position: absolute;
+				right: 70px;
+				background: var(--color-black);
+				color: var(--color-white);
+				padding: 6px 12px;
+				border-radius: 4px;
+				white-space: nowrap;
+				font-size: 13px;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.2s ease;
+			}
+
+			.whatsapp-float:hover .whatsapp-tooltip {
+				opacity: 1;
+			}
+
+			@media (min-width: 1024px) {
+				.nav-inner {
+					grid-template-columns: auto 1fr auto;
+					gap: 30px;
+				}
+
+				.nav-center,
+				.nav-cta {
+					display: flex;
+				}
+
+				.nav-center {
+					justify-content: center;
+				}
+
+				.menu-toggle,
+				.mobile-menu {
+					display: none;
+				}
+			}
+
+			@media (max-width: 1023px) {
+				.hero {
+					background-position: center 22%;
+				}
+
+				.lawyer-photo {
+					height: 330px;
+				}
+
+				.hero-credentials {
+					flex-direction: column;
+					gap: 8px;
+				}
+
+				.hero-credentials li {
+					text-align: center;
+				}
+
+				.areas-grid,
+				.team-grid,
+				.testimonials-grid,
+				.blog-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+
+				.about-grid,
+				.contact-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.process-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.process-grid::before {
+					top: 40px;
+					left: 28px;
+					width: 2px;
+					height: calc(100% - 80px);
+				}
+
+				.process-icon {
+					margin-bottom: 10px;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.container {
+					padding: 0 16px;
+				}
+
+				.hero {
+					background-size: 120% auto;
+					background-position: center 12%;
+					background-repeat: no-repeat;
+				}
+
+				.hero::before {
+					background:
+						linear-gradient(
+							180deg,
+							rgba(10, 10, 10, 0.42) 0%,
+							rgba(10, 10, 10, 0.62) 52%,
+							rgba(10, 10, 10, 0.86) 100%
+						);
+				}
+
+				.hero-content {
+					max-width: 390px;
+					display: flex;
+					flex-direction: column;
+					gap: 0;
+				}
+
+				.hero-visual-block {
+					padding: 18px 14px 10px;
+					border-radius: 14px 14px 0 0;
+					border: 1px solid rgba(255, 255, 255, 0.16);
+					border-bottom: 0;
+					background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+				}
+
+				.hero-visual-block .gold-line {
+					margin-bottom: 12px;
+				}
+
+				.hero-visual-block h1 {
+					margin-bottom: 0;
+				}
+
+				.hero-message-block {
+					padding: 16px 14px;
+					background: rgba(6, 6, 6, 0.92);
+					border: 1px solid rgba(184, 150, 62, 0.3);
+					border-top: 1px solid rgba(184, 150, 62, 0.22);
+					border-radius: 0 0 14px 14px;
+					box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+					margin-top: -1px;
+				}
+
+				.hero-message-block > p {
+					font-size: 16px;
+					line-height: 1.55;
+				}
+
+				.hero-message-block .hero-actions {
+					margin-top: 14px;
+				}
+
+				.hero-message-block .hero-credentials {
+					margin-top: 12px;
+					gap: 8px;
+					font-size: 14px;
+				}
+
+				.hero-message-block .hero-credentials li {
+					width: 100%;
+					text-align: left;
+				}
+
+				.brand-logo {
+					width: 34px;
+					height: 38px;
+				}
+
+				.lawyer-photo {
+					height: 310px;
+				}
+
+				.stats-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+
+				.stat-item:nth-child(2n) {
+					border-left: 1px solid rgba(184, 150, 62, 0.35);
+				}
+
+				.stat-item:nth-child(n + 3) {
+					border-top: 1px solid rgba(184, 150, 62, 0.35);
+				}
+
+				.areas-grid,
+				.team-grid,
+				.testimonials-grid,
+				.footer-grid,
+				.blog-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.hero {
+					min-height: auto;
+					padding-top: 100px;
+					padding-bottom: 48px;
+				}
+
+				.hero-actions {
+					flex-direction: column;
+				}
+
+				.hero-actions .btn-primary,
+				.hero-actions .btn-secondary,
+				.page-actions .btn-primary,
+				.page-actions .btn-secondary {
+					width: 100%;
+				}
+
+				.scroll-arrow {
+					margin-top: 8px;
+				}
+
+				.whatsapp-float {
+					bottom: 16px;
+					right: 16px;
+				}
+
+				.whatsapp-tooltip {
+					display: none;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<slot />
+		<a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+		<header id="inicio">
+			<nav id="top-nav" aria-label="Navegação principal">
+				<div class="container nav-inner">
+					<a class="brand tap-target" href="/" aria-label="Ir para o início">
+						<span class="brand-logo" aria-hidden="true"></span>
+						<span class="brand-text">
+							<span class="brand-main">Silveira Advocacia</span>
+							<span class="brand-sub">Advogados Associados</span>
+						</span>
+					</a>
+
+					<div class="nav-center">
+						<ul class="nav-links">
+							{
+								navLinks.map((link) => (
+									<li>
+										<a
+											class:list={['nav-link', 'tap-target', isActive(link.href) && 'active']}
+											href={link.href}
+											aria-current={isActive(link.href) ? 'page' : undefined}
+										>
+											{link.label}
+										</a>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<div class="nav-cta">
+						<a
+							href={whatsappHref}
+							class="btn-primary tap-target"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Falar no WhatsApp"
+						>
+							<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+							Falar no WhatsApp
+						</a>
+					</div>
+
+					<button
+						id="menu-toggle"
+						class="menu-toggle tap-target"
+						type="button"
+						aria-label="Abrir menu"
+						aria-expanded="false"
+						aria-controls="mobile-menu"
+					>
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+
+				<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+					<ul>
+						{
+							mobileLinks.map((link) => (
+								<li>
+									<a class="tap-target" href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+										{link.label}
+									</a>
+								</li>
+							))
+						}
+						<li>
+							<a
+								href={whatsappHref}
+								class="btn-primary tap-target"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Falar no WhatsApp"
+							>
+								<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+								Falar no WhatsApp
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<footer id="rodape">
+			<div class="container footer-grid">
+				<div class="footer-brand">
+					<span class="footer-logo" aria-hidden="true"></span>
+					<h3>Silveira Advocacia</h3>
+					<p class="sub">Advogados Associados</p>
+					<p>
+						Escritório de advocacia em Campo Belo/MG com mais de 16 anos de experiência. Defendemos seus direitos com
+						estratégia e comprometimento.
+					</p>
+					<a
+						class="social-link tap-target"
+						href="https://www.instagram.com/silveira.advocaciacb/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Instagram da Silveira Advocacia"
+					>
+						<i class="fa-brands fa-instagram" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<div>
+					<h3 class="footer-title">Áreas de Atuação</h3>
+					<ul class="footer-list">
+						{
+							footerAreaLinks.map((areaLink) => (
+								<li>
+									<a class="tap-target" href={areaLink.href}>{areaLink.label}</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+
+				<div class="footer-contact">
+					<h3 class="footer-title">Contato</h3>
+					<p>Rua Dom Pedro I, nº 139, Centro, Campo Belo/MG</p>
+					<a class="tap-target" href="tel:+5535998481800" aria-label="Telefone Silveira Advocacia"
+						>(35) 99848-1800</a
+					>
+					<a class="tap-target" href="mailto:contato@silveiraadv.com" aria-label="E-mail Silveira Advocacia"
+						>contato@silveiraadv.com</a
+					>
+					<p>Seg-Sex: 08h às 18h</p>
+					<a
+						href={whatsappHref}
+						class="btn-primary tap-target"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Falar no WhatsApp"
+					>
+						<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+						WhatsApp
+					</a>
+				</div>
+			</div>
+
+			<div class="container footer-bottom">
+				<div class="footer-bottom-row">
+					<p>© 2026 Silveira Advocacia Advogados Associados. Todos os direitos reservados.</p>
+					<p>OAB/MG — Este site não faz parte do Google LLC ou Facebook Inc.</p>
+					<div class="footer-bottom-links">
+						<button class="text-button tap-target modal-trigger" type="button" data-modal-target="modal-politica">
+							Política de Privacidade
+						</button>
+						<button class="text-button tap-target modal-trigger" type="button" data-modal-target="modal-aviso">
+							Aviso Legal
+						</button>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<a
+			href={whatsappHref}
+			class="whatsapp-float"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Falar no WhatsApp com a Silveira Advocacia"
+		>
+			<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+			<span class="whatsapp-tooltip">Falar no WhatsApp</span>
+		</a>
+
+		<div class="modal" id="modal-politica" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-politica">
+			<div class="modal-content">
+				<button class="modal-close tap-target" type="button" aria-label="Fechar modal">✕</button>
+				<h3 id="titulo-politica">Política de Privacidade</h3>
+				<p>
+					A Silveira Advocacia Advogados Associados respeita sua privacidade e protege seus dados pessoais conforme a
+					legislação aplicável.
+				</p>
+				<p>
+					Coletamos apenas os dados necessários para atendimento, como nome, telefone e e-mail, enviados por WhatsApp
+					ou canais de contato.
+				</p>
+				<p>
+					Os dados são utilizados exclusivamente para retorno de contato, análise inicial e prestação de serviços
+					jurídicos.
+				</p>
+				<p>
+					O sigilo profissional é garantido pelo Código de Ética da OAB. Não compartilhamos suas informações com
+					terceiros, salvo por obrigação legal.
+				</p>
+			</div>
+		</div>
+
+		<div class="modal" id="modal-aviso" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-aviso">
+			<div class="modal-content">
+				<button class="modal-close tap-target" type="button" aria-label="Fechar modal">✕</button>
+				<h3 id="titulo-aviso">Aviso Legal</h3>
+				<p>
+					As informações contidas neste site têm caráter meramente informativo e não constituem aconselhamento
+					jurídico. Para orientação específica ao seu caso, consulte um advogado. A Silveira Advocacia não se
+					responsabiliza pela interpretação ou uso das informações disponibilizadas. Este site não é vinculado ao
+					Google LLC, Facebook Inc. ou qualquer órgão governamental.
+				</p>
+			</div>
+		</div>
+
+		<script is:inline>
+			const menuToggle = document.getElementById('menu-toggle');
+			const mobileMenu = document.getElementById('mobile-menu');
+			const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+			function closeMobileMenu() {
+				if (!menuToggle || !mobileMenu) {
+					return;
+				}
+				menuToggle.classList.remove('open');
+				menuToggle.setAttribute('aria-expanded', 'false');
+				menuToggle.setAttribute('aria-label', 'Abrir menu');
+				mobileMenu.classList.remove('open');
+				mobileMenu.setAttribute('aria-hidden', 'true');
+			}
+
+			if (menuToggle && mobileMenu) {
+				menuToggle.addEventListener('click', () => {
+					const open = menuToggle.classList.toggle('open');
+					menuToggle.setAttribute('aria-expanded', String(open));
+					menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+					mobileMenu.classList.toggle('open', open);
+					mobileMenu.setAttribute('aria-hidden', String(!open));
+				});
+
+				mobileMenuLinks.forEach((link) => {
+					link.addEventListener('click', () => closeMobileMenu());
+				});
+			}
+
+			window.addEventListener('scroll', () => {
+				const nav = document.querySelector('nav');
+				if (!nav) {
+					return;
+				}
+				if (window.scrollY > 60) {
+					nav.classList.add('scrolled');
+				} else {
+					nav.classList.remove('scrolled');
+				}
+			});
+
+			const revealElements = document.querySelectorAll('.reveal');
+			if (revealElements.length) {
+				const revealObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('visible');
+							}
+						});
+					},
+					{ threshold: 0.15 }
+				);
+
+				revealElements.forEach((element) => revealObserver.observe(element));
+			}
+
+			function animateCounter(el, target, duration = 2000) {
+				let start = 0;
+				const step = target / (duration / 16);
+				const timer = setInterval(() => {
+					start += step;
+					if (start >= target) {
+						el.textContent = target + (el.dataset.suffix || '');
+						clearInterval(timer);
+					} else {
+						el.textContent = Math.floor(start) + (el.dataset.suffix || '');
+					}
+				}, 16);
+			}
+
+			const statsSection = document.getElementById('stats');
+			if (statsSection) {
+				const statsObserver = new IntersectionObserver(
+					(entries, observer) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) {
+								return;
+							}
+							entry.target.querySelectorAll('.stat-value').forEach((counter) => {
+								const target = Number(counter.dataset.target || 0);
+								animateCounter(counter, target, 2000);
+							});
+							observer.unobserve(entry.target);
+						});
+					},
+					{ threshold: 0.35 }
+				);
+
+				statsObserver.observe(statsSection);
+			}
+
+			const faqItems = document.querySelectorAll('.faq-item');
+			faqItems.forEach((item) => {
+				const button = item.querySelector('.faq-question');
+				const answer = item.querySelector('.faq-answer');
+
+				if (!button || !answer) {
+					return;
+				}
+
+				button.addEventListener('click', () => {
+					const isOpen = item.classList.contains('open');
+
+					faqItems.forEach((faqItem) => {
+						faqItem.classList.remove('open');
+						const faqButton = faqItem.querySelector('.faq-question');
+						const faqAnswer = faqItem.querySelector('.faq-answer');
+						if (faqButton) {
+							faqButton.setAttribute('aria-expanded', 'false');
+						}
+						if (faqAnswer) {
+							faqAnswer.style.maxHeight = '0px';
+						}
+					});
+
+					if (!isOpen) {
+						item.classList.add('open');
+						button.setAttribute('aria-expanded', 'true');
+						answer.style.maxHeight = `${answer.scrollHeight}px`;
+					}
+				});
+			});
+
+			const modalTriggers = document.querySelectorAll('.modal-trigger');
+			const modals = document.querySelectorAll('.modal');
+
+			function closeAllModals() {
+				modals.forEach((modal) => {
+					modal.classList.remove('open');
+					modal.setAttribute('aria-hidden', 'true');
+				});
+			}
+
+			modalTriggers.forEach((trigger) => {
+				trigger.addEventListener('click', () => {
+					const targetId = trigger.getAttribute('data-modal-target');
+					const targetModal = targetId ? document.getElementById(targetId) : null;
+					if (!targetModal) {
+						return;
+					}
+					closeAllModals();
+					targetModal.classList.add('open');
+					targetModal.setAttribute('aria-hidden', 'false');
+				});
+			});
+
+			modals.forEach((modal) => {
+				const closeButton = modal.querySelector('.modal-close');
+				if (closeButton) {
+					closeButton.addEventListener('click', closeAllModals);
+				}
+
+				modal.addEventListener('click', (event) => {
+					if (event.target === modal) {
+						closeAllModals();
+					}
+				});
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') {
+					closeAllModals();
+					closeMobileMenu();
+				}
+			});
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
